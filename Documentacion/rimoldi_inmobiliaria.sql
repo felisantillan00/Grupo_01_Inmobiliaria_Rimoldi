@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Sep 29, 2025 at 02:22 PM
+-- Generation Time: Sep 29, 2025 at 09:54 PM
 -- Server version: 8.4.3
 -- PHP Version: 8.3.16
 
@@ -73,6 +73,19 @@ INSERT INTO `contrato` (`nro_contrato`, `fecha_inicio`, `fecha_fin`, `fecha_canc
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `detallepago`
+--
+
+CREATE TABLE `detallepago` (
+  `idDetalle` int NOT NULL,
+  `concepto` varchar(255) NOT NULL,
+  `monto` double NOT NULL,
+  `idPago` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `estado`
 --
 
@@ -117,8 +130,8 @@ CREATE TABLE `familiar` (
   `idPropiedad` int NOT NULL,
   `cant_ambientes` int NOT NULL,
   `piscina` bit(1) NOT NULL,
-  `permite_mascotas` tinyint NOT NULL,
-  `permite_niños` tinyint NOT NULL,
+  `permiteMascota` tinyint NOT NULL,
+  `permiteNiños` tinyint NOT NULL,
   `cant_baños` int NOT NULL,
   `cant_cocheras` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -127,7 +140,7 @@ CREATE TABLE `familiar` (
 -- Dumping data for table `familiar`
 --
 
-INSERT INTO `familiar` (`idPropiedad`, `cant_ambientes`, `piscina`, `permite_mascotas`, `permite_niños`, `cant_baños`, `cant_cocheras`) VALUES
+INSERT INTO `familiar` (`idPropiedad`, `cant_ambientes`, `piscina`, `permiteMascota`, `permiteNiños`, `cant_baños`, `cant_cocheras`) VALUES
 (1, 3, b'1', 1, 1, 0, 0),
 (2, 2, b'0', 1, 1, 0, 0);
 
@@ -316,6 +329,13 @@ ALTER TABLE `contrato`
   ADD KEY `fk_Contrato_Martillero` (`dniMartillero`);
 
 --
+-- Indexes for table `detallepago`
+--
+ALTER TABLE `detallepago`
+  ADD PRIMARY KEY (`idDetalle`),
+  ADD KEY `fk_detalle_pago` (`idPago`);
+
+--
 -- Indexes for table `estado`
 --
 ALTER TABLE `estado`
@@ -419,6 +439,12 @@ ALTER TABLE `contrato`
   ADD CONSTRAINT `fk_Contrato_Martillero` FOREIGN KEY (`dniMartillero`) REFERENCES `martillero` (`dniMartillero`),
   ADD CONSTRAINT `fk_Contrato_Propiedad` FOREIGN KEY (`idPropiedad`) REFERENCES `propiedad` (`idPropiedad`),
   ADD CONSTRAINT `fk_Contrato_Propietario` FOREIGN KEY (`dniPropietario`) REFERENCES `propietario` (`dniPropietario`);
+
+--
+-- Constraints for table `detallepago`
+--
+ALTER TABLE `detallepago`
+  ADD CONSTRAINT `fk_detalle_pago` FOREIGN KEY (`idPago`) REFERENCES `pago` (`idPago`);
 
 --
 -- Constraints for table `estadocontrato`
