@@ -24,6 +24,7 @@ public class DetallePago {
     private double intereses;
     private double montoFinal;
 
+    // Un pago puede tener varios detalles de pago.
     @ManyToOne
     @JoinColumn(name = "idPago", referencedColumnName = "idPago")
     private Pago pago;
