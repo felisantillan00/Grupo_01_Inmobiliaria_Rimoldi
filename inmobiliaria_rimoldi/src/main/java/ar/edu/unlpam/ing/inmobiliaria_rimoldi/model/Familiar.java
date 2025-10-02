@@ -1,12 +1,14 @@
 package ar.edu.unlpam.ing.inmobiliaria_rimoldi.model;
 import jakarta.persistence.*;
 import lombok.Setter;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "familiar")
 @PrimaryKeyJoinColumn(name = "idPropiedad")
@@ -22,13 +24,4 @@ public class Familiar extends Propiedad {
     private boolean permiteMascota;
     @Column(name = "permiteNiños")
     private boolean permiteNinos;
-
-    public Familiar(int cantAmbientes, int cantBaños, int cantCocheras, boolean piscina, boolean permiteMascota, boolean permiteNinos) {
-        this.cantAmbientes = cantAmbientes;
-        this.cantBaños = cantBaños;
-        this.cantCocheras = cantCocheras;
-        this.piscina = piscina;
-        this.permiteMascota = permiteMascota;
-        this.permiteNinos = permiteNinos;
-    }
 }

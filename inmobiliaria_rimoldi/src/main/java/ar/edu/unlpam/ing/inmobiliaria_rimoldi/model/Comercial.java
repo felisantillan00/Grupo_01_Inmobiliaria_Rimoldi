@@ -3,12 +3,14 @@ import jakarta.persistence.Entity;
 import lombok.Setter;
 import lombok.Getter;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 @Getter
 @Setter
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "comercial")
 @PrimaryKeyJoinColumn(name = "idPropiedad")
 public class Comercial extends Propiedad {
@@ -18,12 +20,4 @@ public class Comercial extends Propiedad {
     private boolean cocina;
     private boolean vidriera;
     private boolean deposito;
-
-    public Comercial(boolean permisosMunicipales, boolean baño, boolean cocina, boolean vidriera, boolean deposito){
-        this.permisosMunicipales = permisosMunicipales;
-        this.baño = baño;
-        this.cocina = cocina;
-        this.vidriera = vidriera;
-        this.deposito = deposito;
-    }
 }

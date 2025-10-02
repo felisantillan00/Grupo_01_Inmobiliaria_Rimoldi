@@ -1,10 +1,8 @@
 package ar.edu.unlpam.ing.inmobiliaria_rimoldi.model;
 import jakarta.persistence.*;
-import java.util.Date;
-import lombok.Setter;
-import lombok.Getter;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import java.time.LocalDateTime;
+import com.fasterxml.jackson.annotation.*;
+import lombok.*;
 
 @Getter
 @Setter
@@ -13,6 +11,15 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "propiedad")
 @Inheritance(strategy = InheritanceType.JOINED)
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    include = JsonTypeInfo.As.PROPERTY,
+    property = "tipo"   
+)
+@JsonSubTypes({
+    @JsonSubTypes.Type(value = Familiar.class, name = "Familiar"),
+    @JsonSubTypes.Type(value = Comercial.class, name = "Comercial")
+})
 public class Propiedad {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,9 +34,8 @@ public class Propiedad {
     private String condicionesGarantes;
     private double expensas;
     private double gastos;
-    @Temporal(TemporalType.DATE)
     @Column(name = "fecha_precio_minimo")
-    private Date fechaPrecioMinimo;
+    private LocalDateTime fechaPrecioMinimo;
     private String ciudad;
     private boolean enAlquiler;
     private boolean enVenta;
@@ -40,30 +46,7 @@ public class Propiedad {
     private double latitud;
     private double longitud;
 
-    // Relación con Propietario
     @ManyToOne
     @JoinColumn(name = "dniPropietario", referencedColumnName = "dni", nullable = false)
     private Propietario propietario;
-        
-    public Propiedad(String direccion, Integer m2_cubiertos, Integer m2_descubiertos, String condiciones_garantes, Double expensas, Double gastos, 
-                    Date FechaPrecioMinimo, String ciudad, Boolean enAlquiler, Boolean enVenta, double valor_alquiler, double valor_venta,
-                    String descripcion, String titulo, double latitud, double longitud, Propietario propietario) {
-        this.direccion = direccion;
-        this.m2Cubiertos = m2_cubiertos;
-        this.m2Descubiertos = m2_descubiertos;
-        this.condicionesGarantes = condiciones_garantes;
-        this.expensas = expensas;
-        this.gastos = gastos;
-        this.fechaPrecioMinimo = FechaPrecioMinimo;
-        this.ciudad = ciudad;
-        this.enAlquiler = enAlquiler;
-        this.enVenta = enVenta;
-        this.valor_alquiler = valor_alquiler;
-        this.valor_venta = valor_venta;
-        this.descripcion = descripcion;
-        this.titulo = titulo;
-        this.latitud = latitud;
-        this.longitud = longitud;
-        this.propietario = propietario;
-    }
 }

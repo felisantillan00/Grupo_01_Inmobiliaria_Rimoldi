@@ -1,13 +1,10 @@
 package ar.edu.unlpam.ing.inmobiliaria_rimoldi.controller;
-import ar.edu.unlpam.ing.inmobiliaria_rimoldi.dto.AltaPropiedadDTO;
 import ar.edu.unlpam.ing.inmobiliaria_rimoldi.model.Propiedad;
 import ar.edu.unlpam.ing.inmobiliaria_rimoldi.service.PropiedadService;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 @RestController
 @RequestMapping("/propiedades")
 public class PropiedadController {
@@ -15,7 +12,22 @@ public class PropiedadController {
     private PropiedadService propiedadService;
 
     @PostMapping
-    public Propiedad altaPropiedad(@RequestBody AltaPropiedadDTO dto) {
-        return propiedadService.altaPropiedad(dto);
+    public ResponseEntity<?> altaPropiedad(@RequestBody Propiedad propiedad) {
+        try {
+            Propiedad nueva = propiedadService.altaPropiedad(propiedad);
+            return ResponseEntity.status(HttpStatus.CREATED).body(nueva); 
+            // 201 Created
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(e.getMessage()); 
+            // 400 Bad Request
+        } catch (RuntimeException e) {
+            return ResponseEntity
+                    .status(HttpStatus.CONFLICT)
+                    .body("Error de negocio: " + e.getMessage());
+        }catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                                 .body("Error al crear la propiedad: " + e.getMessage());
+            // 500 Internal Server Error
+        }
     }
 }

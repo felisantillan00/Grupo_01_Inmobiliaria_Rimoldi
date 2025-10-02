@@ -1,10 +1,6 @@
 package ar.edu.unlpam.ing.inmobiliaria_rimoldi.model;
-import java.sql.Date;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import java.util.*;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,9 +12,20 @@ import lombok.Setter;
 @Table(name = "pago")
 public class Pago {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idPago")
     private int idPago;
-    private Date fecha_pago;
-    private double monto_total;
-    private int nro_contrato;
+
+    @Column(name = "fecha_pago", nullable = false)
+    private Date fechaPago;
+
+    @Column(name = "monto_total", nullable = false)
+    private double montoTotal;
+
+    @ManyToOne
+    @JoinColumn(name = "nro_contrato", referencedColumnName = "nro_contrato")
+    private Contrato contrato;
+
+    @OneToMany(mappedBy = "pago", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<DetallePago> detalles = new ArrayList<>();
 }

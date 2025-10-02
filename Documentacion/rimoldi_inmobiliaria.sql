@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Sep 29, 2025 at 09:54 PM
+-- Generation Time: Oct 02, 2025 at 01:14 PM
 -- Server version: 8.4.3
 -- PHP Version: 8.3.16
 
@@ -44,7 +44,9 @@ INSERT INTO `comercial` (`idPropiedad`, `permisos_municipales`, `cocina`, `vidri
 (1, b'1', b'1', b'1', b'1', b'0'),
 (2, b'0', b'1', b'0', b'0', b'0'),
 (3, b'1', b'0', b'1', b'1', b'1'),
-(4, b'1', b'0', b'1', b'1', b'1');
+(4, b'1', b'0', b'1', b'1', b'1'),
+(12, b'1', b'1', b'1', b'1', b'1'),
+(13, b'1', b'1', b'1', b'1', b'1');
 
 -- --------------------------------------------------------
 
@@ -80,8 +82,39 @@ CREATE TABLE `detallepago` (
   `idDetalle` int NOT NULL,
   `concepto` varchar(255) NOT NULL,
   `monto` double NOT NULL,
-  `idPago` int NOT NULL
+  `idPago` int NOT NULL,
+  `intereses` double NOT NULL COMMENT 'Demuestra el valor que se le aumentaria al "monto" inicial',
+  `montoFinal` double NOT NULL COMMENT 'Monto final con o sin intereses, si los tendria'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `detallepago`
+--
+
+INSERT INTO `detallepago` (`idDetalle`, `concepto`, `monto`, `idPago`, `intereses`, `montoFinal`) VALUES
+(1, 'Alquiler septiembre', 50000, 7, 0, 50000),
+(2, 'Expensas septiembre', 60000, 7, 0, 60000),
+(3, 'Alquiler septiembre', 50000, 8, 0, 50000),
+(4, 'Expensas septiembre', 60000, 8, 0, 60000),
+(5, 'Alquiler septiembre', 50000, 12, 0, 50000),
+(6, 'Alquiler septiembre', 50000, 13, 0, 50000),
+(7, 'Alquiler septiembre', 50000, 14, 0, 50000),
+(8, 'Alquiler septiembre', 50000, 15, 0, 50000),
+(9, 'Alquiler septiembre', 50000, 16, 0, 50000),
+(10, 'Alquiler septiembre', 50000, 17, 0, 50000),
+(11, 'Expensas septiembre', 60000, 17, 0, 60000),
+(12, 'Alquiler septiembre', 50000, 17, 0, 50000),
+(13, 'Expensas septiembre', 60000, 17, 0, 60000),
+(14, 'Alquiler septiembre', 50000, 18, 0, 50000),
+(15, 'Expensas septiembre', 60000, 18, 0, 60000),
+(16, 'Alquiler septiembre', 50000, 18, 0, 50000),
+(17, 'Expensas septiembre', 60000, 18, 0, 60000),
+(18, 'Alquiler septiembre', 50000, 19, 0, 50000),
+(19, 'Expensas septiembre', 60000, 19, 0, 60000),
+(20, 'Alquiler septiembre', 50000, 19, 0, 50000),
+(21, 'Expensas septiembre', 60000, 19, 0, 60000),
+(22, 'Alquiler septiembre', 50000, 20, 0, 50000),
+(23, 'Expensas septiembre', 60000, 20, 0, 60000);
 
 -- --------------------------------------------------------
 
@@ -142,7 +175,11 @@ CREATE TABLE `familiar` (
 
 INSERT INTO `familiar` (`idPropiedad`, `cant_ambientes`, `piscina`, `permiteMascota`, `permiteNiños`, `cant_baños`, `cant_cocheras`) VALUES
 (1, 3, b'1', 1, 1, 0, 0),
-(2, 2, b'0', 1, 1, 0, 0);
+(2, 2, b'0', 1, 1, 0, 0),
+(9, 4, b'1', 1, 0, 2, 1),
+(10, 4, b'1', 1, 0, 2, 1),
+(14, 4, b'1', 1, 0, 2, 1),
+(15, 4, b'1', 1, 0, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -223,7 +260,21 @@ CREATE TABLE `pago` (
 INSERT INTO `pago` (`idPago`, `fecha_pago`, `monto_total`, `nro_contrato`) VALUES
 (1, '2025-04-01', 30000, 1),
 (2, '2025-05-01', 30000, 1),
-(3, '2025-04-01', 25000, 1);
+(3, '2025-04-01', 25000, 1),
+(7, '2025-09-30', 110000, 1),
+(8, '2025-09-30', 110000, 1),
+(9, '2025-10-02', 110000, 1),
+(10, '2025-10-02', 110000, 1),
+(11, '2025-10-02', 110000, 1),
+(12, '2025-10-02', 110000, 1),
+(13, '2025-10-02', 110000, 1),
+(14, '2025-10-02', 110000, 1),
+(15, '2025-10-02', 110000, 1),
+(16, '2025-10-02', 110000, 1),
+(17, '2025-10-02', 110000, 1),
+(18, '2025-10-02', 110000, 1),
+(19, '2025-10-02', 110000, 1),
+(20, '2025-10-02', 110000, 1);
 
 -- --------------------------------------------------------
 
@@ -287,7 +338,18 @@ INSERT INTO `propiedad` (`idPropiedad`, `dniPropietario`, `direccion`, `m2_cubie
 (1, 20123456789, 'Calle Falsa 123', 80, 20, 'Con Garante', 5000, 1000, '2025-01-01 00:00:00.000000', 'Ciudad A', 1, 1, 30000, 250000, 'Hermosa propiedad familiar', 'Casa en Venta', -35, -58),
 (2, 20234567890, 'Av Siempre Viva 742', 60, 15, 'Sin Garante', 3000, 800, '2025-02-01 00:00:00.000000', 'Ciudad B', 0, 1, 25000, 180000, 'Departamento céntrico', 'Depto en Alquiler', -35, -58),
 (3, 20123456789, 'Av. Siempre Viva 123', 100, 50, 'Garantía propietaria', 5000, 4000, '2025-09-29 00:00:00.000000', 'San Antonio Oeste', 0, 0, 0, 100000, 'Local con excelente ubicación', 'Local Comercial en Venta', -40, -65),
-(4, 20123456789, 'Av. Siempre Viva 123', 100, 50, 'Garantía propietaria', 5000, 4000, '2025-09-29 00:00:00.000000', 'San Antonio Oeste', 0, 0, 0, 100000, 'Local con excelente ubicación', 'Local Comercial en Venta', -40, -65);
+(4, 20123456789, 'Av. Siempre Viva 123', 100, 50, 'Garantía propietaria', 5000, 4000, '2025-09-29 00:00:00.000000', 'San Antonio Oeste', 0, 0, 0, 100000, 'Local con excelente ubicación', 'Local Comercial en Venta', -40, -65),
+(5, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, NULL, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(6, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, NULL, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(7, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, NULL, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(8, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, NULL, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(9, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, NULL, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(10, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, NULL, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(11, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, NULL, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(12, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, NULL, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(13, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, NULL, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(14, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, NULL, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(15, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, NULL, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65);
 
 -- --------------------------------------------------------
 
@@ -410,16 +472,22 @@ ALTER TABLE `contrato`
   MODIFY `nro_contrato` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `detallepago`
+--
+ALTER TABLE `detallepago`
+  MODIFY `idDetalle` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
 -- AUTO_INCREMENT for table `pago`
 --
 ALTER TABLE `pago`
-  MODIFY `idPago` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idPago` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `propiedad`
 --
 ALTER TABLE `propiedad`
-  MODIFY `idPropiedad` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idPropiedad` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Constraints for dumped tables
