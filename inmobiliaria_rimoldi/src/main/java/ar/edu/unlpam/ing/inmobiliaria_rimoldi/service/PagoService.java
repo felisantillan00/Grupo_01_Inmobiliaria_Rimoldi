@@ -15,17 +15,17 @@ public class PagoService {
     private ContratoDAO contratoDAO;
     @Autowired
     private DetallePagoDAO detallePagoDAO;
-    
+
     @Transactional
     public Pago registrarPago(Pago pagoInput) {
-        Contrato contrato = contratoDAO.findById(pagoInput.getContrato().getNroContrato());
+        // 1. Verificar que el contrato exista
+        Contrato contrato = contratoDAO.findById(pagoInput.getNroContrato());
         if (contrato == null) {
-            throw new RuntimeException("No existe el contrato con nro: " + pagoInput.getContrato().getNroContrato());
+            throw new RuntimeException("No existe el contrato con nro: " + pagoInput.getNroContrato());
         }
 
         Date fechaPago = new Date(); // fecha actual
         double total = 0.0;
-
         // calcular vencimiento
         Calendar cal = Calendar.getInstance();
         cal.setTime(contrato.getFechaInicio());
@@ -33,40 +33,35 @@ public class PagoService {
             cal.add(Calendar.MONTH, 1);
         }
         Date fechaVencimiento = cal.getTime();
-
+        // 2. Crear el pago usando solo nroContrato
         Pago pago = new Pago();
         pago.setFechaPago(fechaPago);
-        pago.setContrato(contrato);
-
-        // Recorre detalles enviados en JSON
-        for (DetallePago detallePago : pagoInput.getDetalles()) {
+        pago.setNroContrato(contrato.getNroContrato());
+        // 3. Calcular intereses y monto final por detalle
+        for (DetallePago detalle : pagoInput.getDetalles()) {
             double intereses = 0.0;
-
             if (fechaPago.after(fechaVencimiento)) {
                 long diasAtraso = ChronoUnit.DAYS.between(
                     fechaVencimiento.toInstant(), fechaPago.toInstant()
                 );
-                intereses = detallePago.getMonto() * 0.0033 * diasAtraso;
+                intereses = detalle.getMonto() * 0.0033 * diasAtraso;
             }
 
-            double montoFinal = detallePago.getMonto() + intereses;
+            double montoFinal = detalle.getMonto() + intereses;
             total += montoFinal;
 
-            detallePago.setIntereses(intereses);
-            detallePago.setMontoFinal(montoFinal);
-            detallePago.setPago(pago);
+            detalle.setIntereses(intereses);
+            detalle.setMontoFinal(montoFinal);
         }
-
         pago.setMontoTotal(total);
-        pago.setDetalles(pagoInput.getDetalles());
-
-        // 1. Guardar el pago
+        // 4. Guardar el pago
         pagoDAO.save(pago);
-        
-        // 2. Guardar los detalles asociados
-        for (DetallePago detalle : pago.getDetalles()) {
+        // 5. Guardar detalles asociados
+        for (DetallePago detalle : pagoInput.getDetalles()) {
+            detalle.setIdPago(pago.getIdPago()); // asignar el id del pago guardado
             detallePagoDAO.save(detalle);
         }
+        pago.setDetalles(pagoInput.getDetalles());
         return pago;
     }
 }

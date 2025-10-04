@@ -10,8 +10,13 @@ public class FamiliarDAO {
 
     public Familiar save(Familiar familiar) {
         try (Connection con = sql2o.open()) {
-            String sqlFam = "INSERT INTO familiar(idPropiedad, cant_ambientes, cant_baños, cant_cocheras, piscina, permiteMascota, permiteNiños) " +
-                            "VALUES(:idPropiedad, :cantAmbientes, :cantBaños, :cantCocheras, :piscina, :permiteMascota, :permiteNiños)";
+            String sqlFam = """
+                INSERT INTO familiar(
+                    idPropiedad, cant_ambientes, cant_baños, cant_cocheras, piscina, permiteMascota, permiteNiños
+                ) VALUES (
+                    :idPropiedad, :cantAmbientes, :cantBaños, :cantCocheras, :piscina, :permiteMascota, :permiteNiños
+                )
+            """;
             con.createQuery(sqlFam)
                .addParameter("idPropiedad", familiar.getIdPropiedad())
                .addParameter("cantAmbientes", familiar.getCantAmbientes())
@@ -19,7 +24,7 @@ public class FamiliarDAO {
                .addParameter("cantCocheras", familiar.getCantCocheras())
                .addParameter("piscina", familiar.isPiscina())
                .addParameter("permiteMascota", familiar.isPermiteMascota())
-               .addParameter("permiteNiños", familiar.isPermiteNinos())
+               .addParameter("permiteNiños", familiar.isPermiteNiños())
                .executeUpdate();
             return familiar;
         }

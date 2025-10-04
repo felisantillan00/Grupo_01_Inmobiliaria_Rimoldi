@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Oct 02, 2025 at 01:14 PM
+-- Generation Time: Oct 04, 2025 at 03:18 AM
 -- Server version: 8.4.3
 -- PHP Version: 8.3.16
 
@@ -46,7 +46,23 @@ INSERT INTO `comercial` (`idPropiedad`, `permisos_municipales`, `cocina`, `vidri
 (3, b'1', b'0', b'1', b'1', b'1'),
 (4, b'1', b'0', b'1', b'1', b'1'),
 (12, b'1', b'1', b'1', b'1', b'1'),
-(13, b'1', b'1', b'1', b'1', b'1');
+(13, b'1', b'1', b'1', b'1', b'1'),
+(19, b'1', b'1', b'1', b'1', b'1'),
+(20, b'1', b'1', b'1', b'1', b'1'),
+(21, b'1', b'1', b'1', b'1', b'1'),
+(22, b'1', b'1', b'1', b'1', b'1'),
+(23, b'1', b'1', b'1', b'1', b'1'),
+(24, b'1', b'1', b'1', b'1', b'1'),
+(25, b'1', b'1', b'1', b'1', b'1'),
+(26, b'1', b'1', b'1', b'1', b'1'),
+(27, b'1', b'1', b'1', b'1', b'1'),
+(28, b'1', b'1', b'1', b'1', b'1'),
+(31, b'1', b'1', b'1', b'1', b'1'),
+(32, b'1', b'1', b'1', b'1', b'1'),
+(33, b'1', b'1', b'1', b'1', b'1'),
+(34, b'1', b'1', b'1', b'1', b'1'),
+(35, b'1', b'1', b'1', b'1', b'1'),
+(40, b'1', b'1', b'1', b'1', b'1');
 
 -- --------------------------------------------------------
 
@@ -114,7 +130,13 @@ INSERT INTO `detallepago` (`idDetalle`, `concepto`, `monto`, `idPago`, `interese
 (20, 'Alquiler septiembre', 50000, 19, 0, 50000),
 (21, 'Expensas septiembre', 60000, 19, 0, 60000),
 (22, 'Alquiler septiembre', 50000, 20, 0, 50000),
-(23, 'Expensas septiembre', 60000, 20, 0, 60000);
+(23, 'Expensas septiembre', 60000, 20, 0, 60000),
+(24, 'Alquiler septiembre', 50000, 21, 0, 50000),
+(25, 'Expensas septiembre', 60000, 21, 0, 60000),
+(26, 'Alquiler septiembre', 50000, 22, 0, 50000),
+(27, 'Expensas septiembre', 60000, 22, 0, 60000),
+(28, 'Alquiler septiembre', 50000, 23, 0, 50000),
+(29, 'Expensas septiembre', 60000, 23, 0, 60000);
 
 -- --------------------------------------------------------
 
@@ -179,7 +201,15 @@ INSERT INTO `familiar` (`idPropiedad`, `cant_ambientes`, `piscina`, `permiteMasc
 (9, 4, b'1', 1, 0, 2, 1),
 (10, 4, b'1', 1, 0, 2, 1),
 (14, 4, b'1', 1, 0, 2, 1),
-(15, 4, b'1', 1, 0, 2, 1);
+(15, 4, b'1', 1, 0, 2, 1),
+(17, 4, b'1', 1, 0, 2, 1),
+(18, 4, b'1', 1, 0, 2, 1),
+(29, 4, b'1', 1, 0, 2, 1),
+(30, 4, b'1', 1, 0, 2, 1),
+(36, 4, b'1', 1, 0, 2, 1),
+(37, 4, b'1', 1, 1, 2, 1),
+(38, 4, b'1', 1, 1, 2, 1),
+(39, 4, b'1', 1, 1, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -274,7 +304,10 @@ INSERT INTO `pago` (`idPago`, `fecha_pago`, `monto_total`, `nro_contrato`) VALUE
 (17, '2025-10-02', 110000, 1),
 (18, '2025-10-02', 110000, 1),
 (19, '2025-10-02', 110000, 1),
-(20, '2025-10-02', 110000, 1);
+(20, '2025-10-02', 110000, 1),
+(21, '2025-10-03', 110000, 1),
+(22, '2025-10-03', 110000, 1),
+(23, '2025-10-04', 110000, 1);
 
 -- --------------------------------------------------------
 
@@ -318,7 +351,6 @@ CREATE TABLE `propiedad` (
   `condiciones_garantes` varchar(255) DEFAULT NULL,
   `expensas` double DEFAULT NULL,
   `gastos` double NOT NULL,
-  `fecha_precio_minimo` datetime(6) DEFAULT NULL,
   `ciudad` varchar(255) DEFAULT NULL,
   `enVenta` tinyint(1) NOT NULL,
   `enAlquiler` tinyint(1) NOT NULL,
@@ -334,22 +366,47 @@ CREATE TABLE `propiedad` (
 -- Dumping data for table `propiedad`
 --
 
-INSERT INTO `propiedad` (`idPropiedad`, `dniPropietario`, `direccion`, `m2_cubiertos`, `m2_descubiertos`, `condiciones_garantes`, `expensas`, `gastos`, `fecha_precio_minimo`, `ciudad`, `enVenta`, `enAlquiler`, `valor_alquiler`, `valor_venta`, `descripcion`, `titulo`, `latitud`, `longitud`) VALUES
-(1, 20123456789, 'Calle Falsa 123', 80, 20, 'Con Garante', 5000, 1000, '2025-01-01 00:00:00.000000', 'Ciudad A', 1, 1, 30000, 250000, 'Hermosa propiedad familiar', 'Casa en Venta', -35, -58),
-(2, 20234567890, 'Av Siempre Viva 742', 60, 15, 'Sin Garante', 3000, 800, '2025-02-01 00:00:00.000000', 'Ciudad B', 0, 1, 25000, 180000, 'Departamento céntrico', 'Depto en Alquiler', -35, -58),
-(3, 20123456789, 'Av. Siempre Viva 123', 100, 50, 'Garantía propietaria', 5000, 4000, '2025-09-29 00:00:00.000000', 'San Antonio Oeste', 0, 0, 0, 100000, 'Local con excelente ubicación', 'Local Comercial en Venta', -40, -65),
-(4, 20123456789, 'Av. Siempre Viva 123', 100, 50, 'Garantía propietaria', 5000, 4000, '2025-09-29 00:00:00.000000', 'San Antonio Oeste', 0, 0, 0, 100000, 'Local con excelente ubicación', 'Local Comercial en Venta', -40, -65),
-(5, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, NULL, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
-(6, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, NULL, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
-(7, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, NULL, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
-(8, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, NULL, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
-(9, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, NULL, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
-(10, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, NULL, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
-(11, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, NULL, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
-(12, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, NULL, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
-(13, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, NULL, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
-(14, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, NULL, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
-(15, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, NULL, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65);
+INSERT INTO `propiedad` (`idPropiedad`, `dniPropietario`, `direccion`, `m2_cubiertos`, `m2_descubiertos`, `condiciones_garantes`, `expensas`, `gastos`, `ciudad`, `enVenta`, `enAlquiler`, `valor_alquiler`, `valor_venta`, `descripcion`, `titulo`, `latitud`, `longitud`) VALUES
+(1, 20123456789, 'Calle Falsa 123', 80, 20, 'Con Garante', 5000, 1000, 'Ciudad A', 1, 1, 30000, 250000, 'Hermosa propiedad familiar', 'Casa en Venta', -35, -58),
+(2, 20234567890, 'Av Siempre Viva 742', 60, 15, 'Sin Garante', 3000, 800, 'Ciudad B', 0, 1, 25000, 180000, 'Departamento céntrico', 'Depto en Alquiler', -35, -58),
+(3, 20123456789, 'Av. Siempre Viva 123', 100, 50, 'Garantía propietaria', 5000, 4000, 'San Antonio Oeste', 0, 0, 0, 100000, 'Local con excelente ubicación', 'Local Comercial en Venta', -40, -65),
+(4, 20123456789, 'Av. Siempre Viva 123', 100, 50, 'Garantía propietaria', 5000, 4000, 'San Antonio Oeste', 0, 0, 0, 100000, 'Local con excelente ubicación', 'Local Comercial en Venta', -40, -65),
+(5, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(6, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(7, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(8, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(9, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(10, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(11, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(12, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(13, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(14, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(15, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(16, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(17, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(18, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(19, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(20, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(21, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(22, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(23, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(24, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(25, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(26, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(27, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(28, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(29, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(30, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(31, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(32, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(33, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(34, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(35, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(36, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(37, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(38, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(39, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(40, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65);
 
 -- --------------------------------------------------------
 
@@ -475,19 +532,19 @@ ALTER TABLE `contrato`
 -- AUTO_INCREMENT for table `detallepago`
 --
 ALTER TABLE `detallepago`
-  MODIFY `idDetalle` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `idDetalle` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `pago`
 --
 ALTER TABLE `pago`
-  MODIFY `idPago` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `idPago` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `propiedad`
 --
 ALTER TABLE `propiedad`
-  MODIFY `idPropiedad` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `idPropiedad` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- Constraints for dumped tables

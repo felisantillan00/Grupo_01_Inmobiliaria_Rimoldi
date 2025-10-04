@@ -10,17 +10,22 @@ public class ComercialDAO {
 
     public Comercial save(Comercial comercial) {
         try (Connection con = sql2o.open()) {
-            // 1. Insertar en comercial
-            String sqlCom = "INSERT INTO comercial(idPropiedad, permisos_municipales, baño, cocina, vidriera, deposito) " +
-                            "VALUES(:idPropiedad, :permisosMunicipales, :baño, :cocina, :vidriera, :deposito)";
+            String sqlCom = """
+                INSERT INTO comercial(
+                    idPropiedad, permisos_municipales, baño, cocina, vidriera, deposito
+                ) VALUES (
+                    :idPropiedad, :permisosMunicipales, :baño, :cocina, :vidriera, :deposito
+                )
+            """;
+
             con.createQuery(sqlCom)
-            .addParameter("idPropiedad", comercial.getIdPropiedad())
-            .addParameter("permisosMunicipales", comercial.isPermisosMunicipales())
-            .addParameter("baño", comercial.isBaño())
-            .addParameter("cocina", comercial.isCocina())
-            .addParameter("vidriera", comercial.isVidriera())
-            .addParameter("deposito", comercial.isDeposito())
-            .executeUpdate();
+               .addParameter("idPropiedad", comercial.getIdPropiedad())
+               .addParameter("permisosMunicipales", comercial.isPermisosMunicipales())
+               .addParameter("baño", comercial.isBaño())
+               .addParameter("cocina", comercial.isCocina())
+               .addParameter("vidriera", comercial.isVidriera())
+               .addParameter("deposito", comercial.isDeposito())
+               .executeUpdate();
 
             return comercial;
         }

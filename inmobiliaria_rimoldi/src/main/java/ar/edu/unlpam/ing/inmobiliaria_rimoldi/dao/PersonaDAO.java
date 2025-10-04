@@ -6,7 +6,7 @@ import org.sql2o.Sql2o;
 
 @Repository
 public class PersonaDAO {
-    private Sql2o sql2o = Sql2oDAO.getSql2o(); 
+    private Sql2o sql2o = Sql2oDAO.getSql2o();
 
     // Buscar por DNI
     public Persona findById(Long dni) {
@@ -17,7 +17,6 @@ public class PersonaDAO {
                       .executeAndFetchFirst(Persona.class);
         }
     }
-
     // Insertar
     public Persona save(Persona persona) {
         try (Connection con = sql2o.open()) {
