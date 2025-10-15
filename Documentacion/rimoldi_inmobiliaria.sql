@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Oct 15, 2025 at 02:49 PM
+-- Generation Time: Oct 15, 2025 at 06:39 PM
 -- Server version: 8.4.3
 -- PHP Version: 8.3.16
 
@@ -78,15 +78,16 @@ CREATE TABLE `contrato` (
   `idPropiedad` int NOT NULL,
   `dniPropietario` bigint NOT NULL,
   `dniInquilino` bigint NOT NULL,
-  `dniMartillero` bigint NOT NULL
+  `dniMartillero` bigint NOT NULL,
+  `dniGarante` bigint DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `contrato`
 --
 
-INSERT INTO `contrato` (`nro_contrato`, `fecha_inicio`, `fecha_fin`, `fecha_cancelacion`, `idPropiedad`, `dniPropietario`, `dniInquilino`, `dniMartillero`) VALUES
-(1, '2025-03-01', '2026-03-01', NULL, 1, 20123456789, 20345678901, 20123456789);
+INSERT INTO `contrato` (`nro_contrato`, `fecha_inicio`, `fecha_fin`, `fecha_cancelacion`, `idPropiedad`, `dniPropietario`, `dniInquilino`, `dniMartillero`, `dniGarante`) VALUES
+(1, '2025-03-01', '2026-03-01', NULL, 1, 20123456789, 20345678901, 20123456789, NULL);
 
 -- --------------------------------------------------------
 
@@ -452,7 +453,8 @@ ALTER TABLE `contrato`
   ADD KEY `fk_Contrato_Propiedad` (`idPropiedad`),
   ADD KEY `fk_Contrato_Propietario` (`dniPropietario`),
   ADD KEY `fk_Contrato_Inquilino` (`dniInquilino`),
-  ADD KEY `fk_Contrato_Martillero` (`dniMartillero`);
+  ADD KEY `fk_Contrato_Martillero` (`dniMartillero`),
+  ADD KEY `fk_contrato_garante` (`dniGarante`);
 
 --
 -- Indexes for table `detallepago`
@@ -567,6 +569,7 @@ ALTER TABLE `comercial`
 -- Constraints for table `contrato`
 --
 ALTER TABLE `contrato`
+  ADD CONSTRAINT `fk_contrato_garante` FOREIGN KEY (`dniGarante`) REFERENCES `garante` (`dniGarante`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_Contrato_Inquilino` FOREIGN KEY (`dniInquilino`) REFERENCES `inquilino` (`dniInquilino`),
   ADD CONSTRAINT `fk_Contrato_Martillero` FOREIGN KEY (`dniMartillero`) REFERENCES `martillero` (`dniMartillero`),
   ADD CONSTRAINT `fk_Contrato_Propiedad` FOREIGN KEY (`idPropiedad`) REFERENCES `propiedad` (`idPropiedad`),
