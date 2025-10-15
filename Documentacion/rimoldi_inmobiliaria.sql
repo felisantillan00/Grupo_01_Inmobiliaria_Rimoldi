@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Oct 04, 2025 at 03:18 AM
+-- Generation Time: Oct 15, 2025 at 02:49 PM
 -- Server version: 8.4.3
 -- PHP Version: 8.3.16
 
@@ -136,7 +136,9 @@ INSERT INTO `detallepago` (`idDetalle`, `concepto`, `monto`, `idPago`, `interese
 (26, 'Alquiler septiembre', 50000, 22, 0, 50000),
 (27, 'Expensas septiembre', 60000, 22, 0, 60000),
 (28, 'Alquiler septiembre', 50000, 23, 0, 50000),
-(29, 'Expensas septiembre', 60000, 23, 0, 60000);
+(29, 'Expensas septiembre', 60000, 23, 0, 60000),
+(30, 'Alquiler septiembre', 50000, 24, 0, 50000),
+(31, 'Expensas septiembre', 60000, 24, 0, 60000);
 
 -- --------------------------------------------------------
 
@@ -209,7 +211,8 @@ INSERT INTO `familiar` (`idPropiedad`, `cant_ambientes`, `piscina`, `permiteMasc
 (36, 4, b'1', 1, 0, 2, 1),
 (37, 4, b'1', 1, 1, 2, 1),
 (38, 4, b'1', 1, 1, 2, 1),
-(39, 4, b'1', 1, 1, 2, 1);
+(39, 4, b'1', 1, 1, 2, 1),
+(41, 4, b'1', 1, 1, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -242,15 +245,17 @@ CREATE TABLE `inquilino` (
   `mascotas` tinyint NOT NULL,
   `empresa_trabaja` varchar(45) NOT NULL,
   `cantidad_integrantes` varchar(45) NOT NULL,
-  `ingresos` double NOT NULL
+  `ingresos` double NOT NULL,
+  `tieneRecargo` tinyint(1) DEFAULT '0',
+  `valorDeDeuda` decimal(10,2) DEFAULT '0.00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `inquilino`
 --
 
-INSERT INTO `inquilino` (`dniInquilino`, `mascotas`, `empresa_trabaja`, `cantidad_integrantes`, `ingresos`) VALUES
-(20345678901, 1, 'Empresa A', '3', 120000);
+INSERT INTO `inquilino` (`dniInquilino`, `mascotas`, `empresa_trabaja`, `cantidad_integrantes`, `ingresos`, `tieneRecargo`, `valorDeDeuda`) VALUES
+(20345678901, 1, 'Empresa A', '3', 120000, 0, 0.00);
 
 -- --------------------------------------------------------
 
@@ -307,7 +312,8 @@ INSERT INTO `pago` (`idPago`, `fecha_pago`, `monto_total`, `nro_contrato`) VALUE
 (20, '2025-10-02', 110000, 1),
 (21, '2025-10-03', 110000, 1),
 (22, '2025-10-03', 110000, 1),
-(23, '2025-10-04', 110000, 1);
+(23, '2025-10-04', 110000, 1),
+(24, '2025-10-04', 110000, 1);
 
 -- --------------------------------------------------------
 
@@ -406,7 +412,8 @@ INSERT INTO `propiedad` (`idPropiedad`, `dniPropietario`, `direccion`, `m2_cubie
 (37, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
 (38, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
 (39, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
-(40, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65);
+(40, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(41, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65);
 
 -- --------------------------------------------------------
 
@@ -532,19 +539,19 @@ ALTER TABLE `contrato`
 -- AUTO_INCREMENT for table `detallepago`
 --
 ALTER TABLE `detallepago`
-  MODIFY `idDetalle` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `idDetalle` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `pago`
 --
 ALTER TABLE `pago`
-  MODIFY `idPago` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `idPago` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `propiedad`
 --
 ALTER TABLE `propiedad`
-  MODIFY `idPropiedad` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `idPropiedad` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- Constraints for dumped tables
