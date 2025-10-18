@@ -25,7 +25,6 @@ public class Propiedad {
     private String condicionesGarantes;
     private double expensas;
     private double gastos;
-    // private Timestamp fechaPrecioMinimo;
     private String ciudad;
     private boolean enAlquiler;
     private boolean enVenta;

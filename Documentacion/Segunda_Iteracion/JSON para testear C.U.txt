@@ -1,0 +1,29 @@
+Json para testear C.U "Alta contrato"
+{
+  "fechaInicio": "2028-10-15",
+  "fechaFin": "2030-10-15",
+  "fechaCancelacion": "2029-10-15",
+  "idPropiedad": 3,
+  "dniPropietario": 20123456789,
+  "dniInquilino": 20345678901,
+  "dniMartillero": 20123456789,
+  "dniGarante": 20234567890
+}
+
+Propiedad de la 3 en adelante para testear...
+
+
+Json para testear C.U "Consultar historial de pagos"
+1. GET /pagos?dniPropietario=30876543
+
+2. GET /pagos?nroContrato=5
+
+3. GET /pagos?dniPropietario=30876543
+
+4. GET /pagos?nroContrato=5
+
+5. GET /pagos?montoMin=20000&montoMax=50000
+
+6. GET /pagos?estado=pagado
+
+7. GET /pagos?sortBy=fecha_pago&sortOrder=DESC

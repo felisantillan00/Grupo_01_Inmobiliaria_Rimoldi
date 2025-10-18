@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Oct 15, 2025 at 06:39 PM
+-- Generation Time: Oct 18, 2025 at 01:01 AM
 -- Server version: 8.4.3
 -- PHP Version: 8.3.16
 
@@ -87,7 +87,10 @@ CREATE TABLE `contrato` (
 --
 
 INSERT INTO `contrato` (`nro_contrato`, `fecha_inicio`, `fecha_fin`, `fecha_cancelacion`, `idPropiedad`, `dniPropietario`, `dniInquilino`, `dniMartillero`, `dniGarante`) VALUES
-(1, '2025-03-01', '2026-03-01', NULL, 1, 20123456789, 20345678901, 20123456789, NULL);
+(1, '2025-03-01', '2026-03-01', NULL, 1, 20123456789, 20345678901, 20123456789, NULL),
+(2, '2028-10-15', '2030-10-15', '2029-10-15', 2, 20234567890, 20345678901, 20123456789, 20234567890),
+(3, '2028-10-15', '2030-10-15', '2029-10-15', 3, 20123456789, 20345678901, 20123456789, 20234567890),
+(7, '2058-10-15', '2060-10-15', '2029-10-15', 3, 20123456789, 20345678901, 20123456789, 20234567890);
 
 -- --------------------------------------------------------
 
@@ -99,47 +102,47 @@ CREATE TABLE `detallepago` (
   `idDetalle` int NOT NULL,
   `concepto` varchar(255) NOT NULL,
   `monto` double NOT NULL,
-  `idPago` int NOT NULL,
-  `intereses` double NOT NULL COMMENT 'Demuestra el valor que se le aumentaria al "monto" inicial',
-  `montoFinal` double NOT NULL COMMENT 'Monto final con o sin intereses, si los tendria'
+  `idPago` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `detallepago`
 --
 
-INSERT INTO `detallepago` (`idDetalle`, `concepto`, `monto`, `idPago`, `intereses`, `montoFinal`) VALUES
-(1, 'Alquiler septiembre', 50000, 7, 0, 50000),
-(2, 'Expensas septiembre', 60000, 7, 0, 60000),
-(3, 'Alquiler septiembre', 50000, 8, 0, 50000),
-(4, 'Expensas septiembre', 60000, 8, 0, 60000),
-(5, 'Alquiler septiembre', 50000, 12, 0, 50000),
-(6, 'Alquiler septiembre', 50000, 13, 0, 50000),
-(7, 'Alquiler septiembre', 50000, 14, 0, 50000),
-(8, 'Alquiler septiembre', 50000, 15, 0, 50000),
-(9, 'Alquiler septiembre', 50000, 16, 0, 50000),
-(10, 'Alquiler septiembre', 50000, 17, 0, 50000),
-(11, 'Expensas septiembre', 60000, 17, 0, 60000),
-(12, 'Alquiler septiembre', 50000, 17, 0, 50000),
-(13, 'Expensas septiembre', 60000, 17, 0, 60000),
-(14, 'Alquiler septiembre', 50000, 18, 0, 50000),
-(15, 'Expensas septiembre', 60000, 18, 0, 60000),
-(16, 'Alquiler septiembre', 50000, 18, 0, 50000),
-(17, 'Expensas septiembre', 60000, 18, 0, 60000),
-(18, 'Alquiler septiembre', 50000, 19, 0, 50000),
-(19, 'Expensas septiembre', 60000, 19, 0, 60000),
-(20, 'Alquiler septiembre', 50000, 19, 0, 50000),
-(21, 'Expensas septiembre', 60000, 19, 0, 60000),
-(22, 'Alquiler septiembre', 50000, 20, 0, 50000),
-(23, 'Expensas septiembre', 60000, 20, 0, 60000),
-(24, 'Alquiler septiembre', 50000, 21, 0, 50000),
-(25, 'Expensas septiembre', 60000, 21, 0, 60000),
-(26, 'Alquiler septiembre', 50000, 22, 0, 50000),
-(27, 'Expensas septiembre', 60000, 22, 0, 60000),
-(28, 'Alquiler septiembre', 50000, 23, 0, 50000),
-(29, 'Expensas septiembre', 60000, 23, 0, 60000),
-(30, 'Alquiler septiembre', 50000, 24, 0, 50000),
-(31, 'Expensas septiembre', 60000, 24, 0, 60000);
+INSERT INTO `detallepago` (`idDetalle`, `concepto`, `monto`, `idPago`) VALUES
+(1, 'Alquiler septiembre', 50000, 7),
+(2, 'Expensas septiembre', 60000, 7),
+(3, 'Alquiler septiembre', 50000, 8),
+(4, 'Expensas septiembre', 60000, 8),
+(5, 'Alquiler septiembre', 50000, 12),
+(6, 'Alquiler septiembre', 50000, 13),
+(7, 'Alquiler septiembre', 50000, 14),
+(8, 'Alquiler septiembre', 50000, 15),
+(9, 'Alquiler septiembre', 50000, 16),
+(10, 'Alquiler septiembre', 50000, 17),
+(11, 'Expensas septiembre', 60000, 17),
+(12, 'Alquiler septiembre', 50000, 17),
+(13, 'Expensas septiembre', 60000, 17),
+(14, 'Alquiler septiembre', 50000, 18),
+(15, 'Expensas septiembre', 60000, 18),
+(16, 'Alquiler septiembre', 50000, 18),
+(17, 'Expensas septiembre', 60000, 18),
+(18, 'Alquiler septiembre', 50000, 19),
+(19, 'Expensas septiembre', 60000, 19),
+(20, 'Alquiler septiembre', 50000, 19),
+(21, 'Expensas septiembre', 60000, 19),
+(22, 'Alquiler septiembre', 50000, 20),
+(23, 'Expensas septiembre', 60000, 20),
+(24, 'Alquiler septiembre', 50000, 21),
+(25, 'Expensas septiembre', 60000, 21),
+(26, 'Alquiler septiembre', 50000, 22),
+(27, 'Expensas septiembre', 60000, 22),
+(28, 'Alquiler septiembre', 50000, 23),
+(29, 'Expensas septiembre', 60000, 23),
+(30, 'Alquiler septiembre', 50000, 24),
+(31, 'Expensas septiembre', 60000, 24),
+(32, 'Alquiler septiembre', 50000, 25),
+(33, 'Expensas septiembre', 60000, 25);
 
 -- --------------------------------------------------------
 
@@ -149,14 +152,14 @@ INSERT INTO `detallepago` (`idDetalle`, `concepto`, `monto`, `idPago`, `interese
 
 CREATE TABLE `estado` (
   `idEstado` int NOT NULL,
-  `estado` varchar(45) NOT NULL
+  `nombreEstado` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `estado`
 --
 
-INSERT INTO `estado` (`idEstado`, `estado`) VALUES
+INSERT INTO `estado` (`idEstado`, `nombreEstado`) VALUES
 (1, 'Activo'),
 (2, 'Cancelado');
 
@@ -168,15 +171,17 @@ INSERT INTO `estado` (`idEstado`, `estado`) VALUES
 
 CREATE TABLE `estadocontrato` (
   `nro_contrato` int NOT NULL,
-  `idEstado` int NOT NULL
+  `idEstado` int NOT NULL,
+  `fechaEstado` date DEFAULT NULL COMMENT 'Fecha de la ultima actualizacion del contrato, o historial.\r\n'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `estadocontrato`
 --
 
-INSERT INTO `estadocontrato` (`nro_contrato`, `idEstado`) VALUES
-(1, 1);
+INSERT INTO `estadocontrato` (`nro_contrato`, `idEstado`, `fechaEstado`) VALUES
+(1, 1, NULL),
+(7, 1, '2025-10-17');
 
 -- --------------------------------------------------------
 
@@ -248,7 +253,7 @@ CREATE TABLE `inquilino` (
   `cantidad_integrantes` varchar(45) NOT NULL,
   `ingresos` double NOT NULL,
   `tieneRecargo` tinyint(1) DEFAULT '0',
-  `valorDeDeuda` decimal(10,2) DEFAULT '0.00'
+  `valorDeDeuda` double DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
@@ -256,7 +261,7 @@ CREATE TABLE `inquilino` (
 --
 
 INSERT INTO `inquilino` (`dniInquilino`, `mascotas`, `empresa_trabaja`, `cantidad_integrantes`, `ingresos`, `tieneRecargo`, `valorDeDeuda`) VALUES
-(20345678901, 1, 'Empresa A', '3', 120000, 0, 0.00);
+(20345678901, 1, 'Empresa A', '3', 120000, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -314,7 +319,8 @@ INSERT INTO `pago` (`idPago`, `fecha_pago`, `monto_total`, `nro_contrato`) VALUE
 (21, '2025-10-03', 110000, 1),
 (22, '2025-10-03', 110000, 1),
 (23, '2025-10-04', 110000, 1),
-(24, '2025-10-04', 110000, 1);
+(24, '2025-10-04', 110000, 1),
+(25, '2025-10-18', 110000, 1);
 
 -- --------------------------------------------------------
 
@@ -535,19 +541,19 @@ ALTER TABLE `propietario`
 -- AUTO_INCREMENT for table `contrato`
 --
 ALTER TABLE `contrato`
-  MODIFY `nro_contrato` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `nro_contrato` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `detallepago`
 --
 ALTER TABLE `detallepago`
-  MODIFY `idDetalle` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `idDetalle` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `pago`
 --
 ALTER TABLE `pago`
-  MODIFY `idPago` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `idPago` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `propiedad`

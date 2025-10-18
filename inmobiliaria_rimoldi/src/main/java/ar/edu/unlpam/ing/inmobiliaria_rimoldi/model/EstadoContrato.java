@@ -1,4 +1,6 @@
 package ar.edu.unlpam.ing.inmobiliaria_rimoldi.model;
+import java.util.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,9 +10,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class DetallePago {
-    private int idDetalle;
-    private String concepto;
-    private double monto;
-    private int idPago;
+public class EstadoContrato{
+    private int nroContrato;
+    private int idEstado;
+    private Date fechaEstado;
 }

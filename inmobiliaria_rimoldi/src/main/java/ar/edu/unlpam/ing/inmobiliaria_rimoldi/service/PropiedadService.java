@@ -1,5 +1,6 @@
 package ar.edu.unlpam.ing.inmobiliaria_rimoldi.service;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 import ar.edu.unlpam.ing.inmobiliaria_rimoldi.dao.*;
 import ar.edu.unlpam.ing.inmobiliaria_rimoldi.model.*;
@@ -17,6 +18,7 @@ public class PropiedadService {
     @Autowired
     private PropiedadDAO propiedadDAO;
 
+    @Transactional
     public Propiedad altaPropiedad(Propiedad propiedad) {     
         // Validar propietario
         Propietario propietario = propietarioDAO.findById(propiedad.getDniPropietario());

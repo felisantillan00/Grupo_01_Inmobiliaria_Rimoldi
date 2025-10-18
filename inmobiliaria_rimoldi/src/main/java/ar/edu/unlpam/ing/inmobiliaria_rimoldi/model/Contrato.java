@@ -10,10 +10,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Contrato {
-    private int nroContrato;
+    private int nroContrato; // PK
     private Date fechaInicio;
     private Date fechaFin;
     private Date fechaCancelacion;
     private int idPropiedad; // FK a propiedad
     private Long dniPropietario; // FK a propietario
+    private Long dniInquilino; // FK a inquilino
+    private Long dniMartillero; // FK a martillero
+    private Long dniGarante; // FK a garante
 }

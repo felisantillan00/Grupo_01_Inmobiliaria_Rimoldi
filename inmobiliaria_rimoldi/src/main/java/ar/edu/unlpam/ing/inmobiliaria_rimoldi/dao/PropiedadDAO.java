@@ -7,18 +7,39 @@ import org.sql2o.Sql2o;
 @Repository
 public class PropiedadDAO {
     private Sql2o sql2o = Sql2oDAO.getSql2o();
-    // public Propiedad findById(Integer id) {
-    //     try (Connection con = sql2o.open()) {
-    //         // String sql = "SELECT * FROM propiedad WHERE idPropiedad = :id";
-    //         String sql = """
-    //         SELECT * FROM propiedad WHERE idPropiedad = :id
-    //         """;
-
-    //         return con.createQuery(sql)
-    //                 .addParameter("idPropiedad", id)
-    //                 .executeAndFetchFirst(Propiedad.class);
-    //     }
-    // }
+    
+    public Propiedad findById(Integer id) {
+        try (Connection con = sql2o.open()) {
+            // String sql = """
+            // SELECT * FROM propiedad WHERE idPropiedad = :idPropiedad
+            // """;
+            String sql = """
+                SELECT 
+                    idPropiedad,
+                    dniPropietario,
+                    direccion,
+                    m2_cubiertos AS m2Cubiertos,
+                    m2_descubiertos AS m2Descubiertos,
+                    condiciones_garantes AS condicionesGarantes,
+                    expensas,
+                    gastos,
+                    ciudad,
+                    enAlquiler,
+                    enVenta,
+                    valor_alquiler,
+                    valor_venta,
+                    descripcion,
+                    titulo,
+                    latitud,
+                    longitud
+                FROM propiedad
+                WHERE idPropiedad = :idPropiedad
+                """;
+            return con.createQuery(sql)
+                    .addParameter("idPropiedad", id)
+                    .executeAndFetchFirst(Propiedad.class);
+        }
+    }
 
     public Propiedad save(Propiedad propiedad) {
         try (Connection con = sql2o.open()) {

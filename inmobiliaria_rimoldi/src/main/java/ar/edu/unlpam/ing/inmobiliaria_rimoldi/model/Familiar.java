@@ -10,9 +10,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Familiar extends Propiedad {
     private int cantAmbientes;
-    private int cantBaños;
-    private int cantCocheras;
     private boolean piscina;
     private boolean permiteMascota;
     private boolean permiteNiños;
+    private int cantBaños;
+    private int cantCocheras;
 }

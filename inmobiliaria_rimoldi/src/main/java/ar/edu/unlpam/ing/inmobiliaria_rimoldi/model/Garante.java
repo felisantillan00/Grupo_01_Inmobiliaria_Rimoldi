@@ -8,9 +8,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class DetallePago {
-    private int idDetalle;
-    private String concepto;
-    private double monto;
-    private int idPago;
+public class Garante extends Persona{
+    private double ingresos;
+    private String empresa_trabaja;
+    private String contacto_trabaja;
 }

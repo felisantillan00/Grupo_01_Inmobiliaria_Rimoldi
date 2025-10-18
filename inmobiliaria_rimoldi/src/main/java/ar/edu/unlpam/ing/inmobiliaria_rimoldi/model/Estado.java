@@ -8,9 +8,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class DetallePago {
-    private int idDetalle;
-    private String concepto;
-    private double monto;
-    private int idPago;
+public class Estado {
+    private int idEstado;
+    private String nombreEstado;
 }

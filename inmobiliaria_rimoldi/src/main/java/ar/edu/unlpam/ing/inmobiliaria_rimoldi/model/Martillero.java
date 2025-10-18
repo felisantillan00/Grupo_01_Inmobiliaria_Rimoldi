@@ -8,9 +8,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class DetallePago {
-    private int idDetalle;
-    private String concepto;
-    private double monto;
-    private int idPago;
+public class Martillero extends Persona{
+    private int nroMatricula;
 }

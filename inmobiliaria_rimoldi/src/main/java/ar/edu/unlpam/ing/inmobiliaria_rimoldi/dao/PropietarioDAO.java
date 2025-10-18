@@ -13,8 +13,10 @@ public class PropietarioDAO {
     public Propietario findById(Long dni) {
         try (Connection con = sql2o.open()) {
             String sql = """
-                SELECT p.dni, p.nombre, p.email, p.celular, p.fecha_nac, 
-                    p.username, p.cuil, p.password, p.direccion,
+                SELECT 
+                    p.dni, p.nombre, p.email, p.celular, 
+                    p.fecha_nac as fechaNac, 
+                    p.cuil, p.direccion,
                     pr.cbu
                 FROM persona p
                 JOIN propietario pr ON p.dni = pr.dniPropietario

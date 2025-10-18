@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Comercial extends Propiedad{
-    // private Integer idPropiedad; // FK a propiedad
     private boolean permisosMunicipales;
     private boolean baño;
     private boolean cocina;

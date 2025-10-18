@@ -7,7 +7,27 @@ import org.sql2o.Sql2o;
 @Repository
 public class FamiliarDAO {
     private Sql2o sql2o = Sql2oDAO.getSql2o();
+    // Buscamos la propiedad    
+    public Familiar findById(Integer idPropiedad) {
+        try (Connection con = sql2o.open()) {
+            String sql = """
+                SELECT
+                    idPropiedad,
+                    cant_ambientes AS cantAmbientes,
+                    piscina,
+                    permiteMascota,
+                    permiteNiños,
+                    cant_baños AS cantBaños,
+                    cant_cocheras AS cantCocheras
+                FROM familiar WHERE idPropiedad = :idPropiedad
+            """;
+            return con.createQuery(sql)
+                    .addParameter("idPropiedad", idPropiedad)
+                    .executeAndFetchFirst(Familiar.class);
+        }
+    }
 
+    // Guardamos la propiedad
     public Familiar save(Familiar familiar) {
         try (Connection con = sql2o.open()) {
             String sqlFam = """
