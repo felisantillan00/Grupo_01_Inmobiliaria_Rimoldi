@@ -7,28 +7,33 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @RestController
 @RequestMapping("/pagos")
 public class PagoController {
     @Autowired
     private PagoService pagoService;
+    private static final Logger logger = LoggerFactory.getLogger(PagoController.class);
 
     @PostMapping
     public ResponseEntity<?> registrarPago(@RequestBody Pago pago) {
         try {
             Pago guardado = pagoService.registrarPago(pago);
+            logger.info("Pago registrado: {}", guardado);
             if (guardado != null) {
                 return ResponseEntity.status(HttpStatus.CREATED).body(guardado); 
                 // 201 Created
             } else {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                                     .body("No se pudo registrar el pago");
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No se pudo registrar el pago");
             }
         } catch (IllegalArgumentException e) {
+            logger.warn("Error de negocio al registrar el pago: {}", e.getMessage());
             return ResponseEntity.badRequest().body(e.getMessage()); 
             // 400 Bad Request
         } catch (Exception e) {
+            logger.error("Error inesperado al registrar el pago", e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                                  .body("Error al registrar el pago: " + e.getMessage());
             // 500 Internal Server Error
@@ -64,14 +69,13 @@ public class PagoController {
                     dniInquilino, dniPropietario, nroContrato,
                     montoMin, montoMax, estado, sortBy, sortOrder
             );
-
+            logger.info("Pagos encontrados: {}", pagos);
             if (pagos.isEmpty()) {
                 return ResponseEntity.ok("No se encontraron registros para los criterios seleccionados");
             }
-
             return ResponseEntity.ok(pagos);
-
         } catch (Exception e) {
+            logger.error("Error al consultar pagos", e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                                  .body("Error al consultar pagos: " + e.getMessage());
         }
