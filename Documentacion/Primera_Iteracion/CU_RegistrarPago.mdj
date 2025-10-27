@@ -6335,8 +6335,8 @@
 									"font": "Arial;13;0",
 									"left": 8,
 									"top": 8,
-									"width": 1153,
-									"height": 705,
+									"width": 1129,
+									"height": 681,
 									"nameLabel": {
 										"$ref": "AAAAAAGZc7R6Fq04tq0="
 									},
@@ -9225,85 +9225,6 @@
 					"type": {
 						"$ref": "AAAAAAGZpRg/fJ6dIzw="
 					}
-				}
-			]
-		},
-		{
-			"_type": "UMLCollaboration",
-			"_id": "AAAAAAGZc7SJ4K1DoHo=",
-			"_parent": {
-				"$ref": "AAAAAAFF+h6SjaM2Hec="
-			},
-			"name": "Collaboration2",
-			"ownedElements": [
-				{
-					"_type": "UMLInteraction",
-					"_id": "AAAAAAGZc7SJ4K1ElBs=",
-					"_parent": {
-						"$ref": "AAAAAAGZc7SJ4K1DoHo="
-					},
-					"name": "Interaction1",
-					"ownedElements": [
-						{
-							"_type": "UMLCommunicationDiagram",
-							"_id": "AAAAAAGZc7SJ4K1Faec=",
-							"_parent": {
-								"$ref": "AAAAAAGZc7SJ4K1ElBs="
-							},
-							"name": "DiagramaDeComunicacion",
-							"ownedViews": [
-								{
-									"_type": "UMLFrameView",
-									"_id": "AAAAAAGZc7SJ4K1GFL4=",
-									"_parent": {
-										"$ref": "AAAAAAGZc7SJ4K1Faec="
-									},
-									"model": {
-										"$ref": "AAAAAAGZc7SJ4K1Faec="
-									},
-									"subViews": [
-										{
-											"_type": "LabelView",
-											"_id": "AAAAAAGZc7SJ4K1HqFY=",
-											"_parent": {
-												"$ref": "AAAAAAGZc7SJ4K1GFL4="
-											},
-											"font": "Arial;13;0",
-											"left": 32.72998046875,
-											"top": 13,
-											"width": 156.34619140625,
-											"height": 13,
-											"text": "DiagramaDeComunicacion"
-										},
-										{
-											"_type": "LabelView",
-											"_id": "AAAAAAGZc7SJ4a1IT4g=",
-											"_parent": {
-												"$ref": "AAAAAAGZc7SJ4K1GFL4="
-											},
-											"font": "Arial;13;1",
-											"left": 13,
-											"top": 13,
-											"width": 14.72998046875,
-											"height": 13,
-											"text": "sd"
-										}
-									],
-									"font": "Arial;13;0",
-									"left": 8,
-									"top": 8,
-									"width": 692,
-									"height": 592,
-									"nameLabel": {
-										"$ref": "AAAAAAGZc7SJ4K1HqFY="
-									},
-									"frameTypeLabel": {
-										"$ref": "AAAAAAGZc7SJ4a1IT4g="
-									}
-								}
-							]
-						}
-					]
 				}
 			]
 		}

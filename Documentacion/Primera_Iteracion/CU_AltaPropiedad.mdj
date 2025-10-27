@@ -9659,9 +9659,9 @@
 												"$ref": "AAAAAAGZZIlYeOcJt/w="
 											},
 											"font": "Arial;13;0",
-											"left": 38.55908203125,
+											"left": 40.72998046875,
 											"top": 13,
-											"width": 120.10107421875,
+											"width": 134.681640625,
 											"height": 13,
 											"text": "DiagramaDeSecuencia"
 										},
@@ -9674,7 +9674,7 @@
 											"font": "Arial;13;1",
 											"left": 21,
 											"top": 13,
-											"width": 12.55908203125,
+											"width": 14.72998046875,
 											"height": 13,
 											"text": "sd"
 										}
@@ -12322,9 +12322,9 @@
 												"$ref": "AAAAAAGZq3STN+vt9wk="
 											},
 											"font": "Arial;13;0",
-											"left": 567.99365234375,
+											"left": 568.72998046875,
 											"top": 245,
-											"width": 183.634765625,
+											"width": 198.97705078125,
 											"height": 13,
 											"text": "if(propiedad instanceOf comercial)"
 										},
@@ -12337,7 +12337,7 @@
 											"font": "Arial;13;1",
 											"left": 549,
 											"top": 245,
-											"width": 13.99365234375,
+											"width": 14.72998046875,
 											"height": 13,
 											"text": "alt"
 										},
@@ -12423,9 +12423,9 @@
 												"$ref": "AAAAAAGZq3V3aewIo0w="
 											},
 											"font": "Arial;13;0",
-											"left": 567.99365234375,
+											"left": 568.72998046875,
 											"top": 365,
-											"width": 173.53564453125,
+											"width": 185.2470703125,
 											"height": 13,
 											"text": "if(propiedad instanceOf familiar)"
 										},
@@ -12438,7 +12438,7 @@
 											"font": "Arial;13;1",
 											"left": 549,
 											"top": 365,
-											"width": 13.99365234375,
+											"width": 14.72998046875,
 											"height": 13,
 											"text": "alt"
 										},
@@ -13266,96 +13266,6 @@
 					"type": {
 						"$ref": "AAAAAAGZlwIqfkSDgLk="
 					}
-				}
-			]
-		},
-		{
-			"_type": "UMLCollaboration",
-			"_id": "AAAAAAGZc6ufysZFUak=",
-			"_parent": {
-				"$ref": "AAAAAAFF+h6SjaM2Hec="
-			},
-			"name": "Collaboration2",
-			"ownedElements": [
-				{
-					"_type": "UMLInteraction",
-					"_id": "AAAAAAGZc6ufysZGujw=",
-					"_parent": {
-						"$ref": "AAAAAAGZc6ufysZFUak="
-					},
-					"name": "Interaction1",
-					"ownedElements": [
-						{
-							"_type": "UMLCommunicationDiagram",
-							"_id": "AAAAAAGZc6ufysZHURA=",
-							"_parent": {
-								"$ref": "AAAAAAGZc6ufysZGujw="
-							},
-							"name": "DiagramaDeComunicacion",
-							"ownedViews": [
-								{
-									"_type": "UMLFrameView",
-									"_id": "AAAAAAGZc6ufy8ZIyNo=",
-									"_parent": {
-										"$ref": "AAAAAAGZc6ufysZHURA="
-									},
-									"model": {
-										"$ref": "AAAAAAGZc6ufysZHURA="
-									},
-									"subViews": [
-										{
-											"_type": "LabelView",
-											"_id": "AAAAAAGZc6ufy8ZJX1Q=",
-											"_parent": {
-												"$ref": "AAAAAAGZc6ufy8ZIyNo="
-											},
-											"font": "Arial;13;0",
-											"left": 30.55908203125,
-											"top": 13,
-											"width": 143.2255859375,
-											"height": 13,
-											"text": "DiagramaDeComunicacion"
-										},
-										{
-											"_type": "LabelView",
-											"_id": "AAAAAAGZc6ufy8ZK64U=",
-											"_parent": {
-												"$ref": "AAAAAAGZc6ufy8ZIyNo="
-											},
-											"font": "Arial;13;1",
-											"left": 13,
-											"top": 13,
-											"width": 12.55908203125,
-											"height": 13,
-											"text": "sd"
-										}
-									],
-									"font": "Arial;13;0",
-									"left": 8,
-									"top": 8,
-									"width": 692,
-									"height": 592,
-									"nameLabel": {
-										"$ref": "AAAAAAGZc6ufy8ZJX1Q="
-									},
-									"frameTypeLabel": {
-										"$ref": "AAAAAAGZc6ufy8ZK64U="
-									}
-								}
-							]
-						}
-					]
-				}
-			],
-			"attributes": [
-				{
-					"_type": "UMLAttribute",
-					"_id": "AAAAAAGZc7QHh8ZVahs=",
-					"_parent": {
-						"$ref": "AAAAAAGZc6ufysZFUak="
-					},
-					"name": "Role1",
-					"type": ""
 				}
 			]
 		}
