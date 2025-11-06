@@ -10,9 +10,6 @@ public class PropiedadDAO {
     
     public Propiedad findById(Integer id) {
         try (Connection con = sql2o.open()) {
-            // String sql = """
-            // SELECT * FROM propiedad WHERE idPropiedad = :idPropiedad
-            // """;
             String sql = """
                 SELECT 
                     idPropiedad,

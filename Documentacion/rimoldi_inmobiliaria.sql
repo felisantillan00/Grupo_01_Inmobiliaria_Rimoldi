@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Oct 27, 2025 at 07:06 PM
+-- Generation Time: Nov 06, 2025 at 07:45 PM
 -- Server version: 8.4.3
 -- PHP Version: 8.3.16
 
@@ -72,9 +72,9 @@ INSERT INTO `comercial` (`idPropiedad`, `permisos_municipales`, `cocina`, `vidri
 
 CREATE TABLE `contrato` (
   `nro_contrato` int NOT NULL,
-  `fecha_inicio` date NOT NULL,
-  `fecha_fin` date NOT NULL,
-  `fecha_cancelacion` date DEFAULT NULL,
+  `fechaInicio` date NOT NULL,
+  `fechaFin` date NOT NULL,
+  `fechaCancelacion` date DEFAULT NULL,
   `idPropiedad` int NOT NULL,
   `dniPropietario` bigint NOT NULL,
   `dniInquilino` bigint NOT NULL,
@@ -86,11 +86,12 @@ CREATE TABLE `contrato` (
 -- Dumping data for table `contrato`
 --
 
-INSERT INTO `contrato` (`nro_contrato`, `fecha_inicio`, `fecha_fin`, `fecha_cancelacion`, `idPropiedad`, `dniPropietario`, `dniInquilino`, `dniMartillero`, `dniGarante`) VALUES
+INSERT INTO `contrato` (`nro_contrato`, `fechaInicio`, `fechaFin`, `fechaCancelacion`, `idPropiedad`, `dniPropietario`, `dniInquilino`, `dniMartillero`, `dniGarante`) VALUES
 (1, '2025-03-01', '2026-03-01', NULL, 1, 20123456789, 20345678901, 20123456789, NULL),
 (2, '2028-10-15', '2030-10-15', '2029-10-15', 2, 20234567890, 20345678901, 20123456789, 20234567890),
 (3, '2028-10-15', '2030-10-15', '2029-10-15', 3, 20123456789, 20345678901, 20123456789, 20234567890),
-(7, '2058-10-15', '2060-10-15', '2029-10-15', 3, 20123456789, 20345678901, 20123456789, 20234567890);
+(7, '2058-10-15', '2060-10-15', '2029-10-15', 3, 20123456789, 20345678901, 20123456789, 20234567890),
+(8, '2030-10-15', '2032-10-15', '2031-10-15', 3, 20123456789, 20345678901, 20123456789, 20234567890);
 
 -- --------------------------------------------------------
 
@@ -181,7 +182,8 @@ CREATE TABLE `estadocontrato` (
 
 INSERT INTO `estadocontrato` (`nro_contrato`, `idEstado`, `fechaEstado`) VALUES
 (1, 1, NULL),
-(7, 1, '2025-10-17');
+(7, 1, '2025-10-17'),
+(8, 1, '2025-11-06');
 
 -- --------------------------------------------------------
 
@@ -541,7 +543,7 @@ ALTER TABLE `propietario`
 -- AUTO_INCREMENT for table `contrato`
 --
 ALTER TABLE `contrato`
-  MODIFY `nro_contrato` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `nro_contrato` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `detallepago`
