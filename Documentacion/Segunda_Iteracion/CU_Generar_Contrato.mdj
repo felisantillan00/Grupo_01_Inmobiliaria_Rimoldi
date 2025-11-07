@@ -10749,17 +10749,18 @@
 									"model": {
 										"$ref": "AAAAAAGZ9EFkYZ8MysA="
 									},
-									"visible": false,
 									"font": "Arial;13;0",
-									"left": 967,
+									"left": 953,
 									"top": 244,
+									"width": 28.5517578125,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 30,
 									"hostEdge": {
 										"$ref": "AAAAAAGZ9EFkYp8PuOw="
 									},
-									"edgePosition": 2
+									"edgePosition": 2,
+									"text": "+use"
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -11287,17 +11288,18 @@
 									"model": {
 										"$ref": "AAAAAAGZ9EF3Os7qR+M="
 									},
-									"visible": false,
 									"font": "Arial;13;0",
-									"left": 939,
-									"top": 768,
+									"left": 950,
+									"top": 759,
+									"width": 28.5517578125,
 									"height": 13,
-									"alpha": 0.5235987755982988,
-									"distance": 30,
+									"alpha": -0.3129010774627161,
+									"distance": 35.73513677041127,
 									"hostEdge": {
 										"$ref": "AAAAAAGZ9EF3Os7txDc="
 									},
-									"edgePosition": 2
+									"edgePosition": 2,
+									"text": "+use"
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -12690,6 +12692,7 @@
 								"_parent": {
 									"$ref": "AAAAAAGZ9EFkYZ8LE6E="
 								},
+								"name": "use",
 								"reference": {
 									"$ref": "AAAAAAGZ8+crJS1pnhM="
 								}
@@ -13802,6 +13805,7 @@
 								"_parent": {
 									"$ref": "AAAAAAGZ9EF3Os7pFBs="
 								},
+								"name": "use",
 								"reference": {
 									"$ref": "AAAAAAGZ8//LLzY/+vU="
 								}
