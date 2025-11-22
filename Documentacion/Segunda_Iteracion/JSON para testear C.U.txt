@@ -1,0 +1,32 @@
+Json para testear C.U "Alta contrato" -- Actualizarle 2 años para hacer una nueva prueba.
+{
+  "fechaInicio": "2030-10-15",
+  "fechaFin": "2032-10-15",
+  "fechaCancelacion": "2031-10-15",
+  "idPropiedad": 3,
+  "dniPropietario": 20123456789,
+  "dniInquilino": 20345678901,
+  "dniMartillero": 20123456789,
+  "dniGarante": 20234567890
+}
+
+Propiedad de la 3 en adelante para testear...
+
+
+Json para testear C.U "Consultar historial de pagos"
+
+1. GET | http://localhost:8080/pagos?dniPropietario=20123456789
+
+2. GET | http://localhost:8080/pagos?nroContrato=5
+
+3. GET | http://localhost:8080/pagos?dniInquilino=20345678901
+
+4. GET | http://localhost:8080/pagos?nroContrato=5
+
+5. GET | http://localhost:8080/pagos?montoMin=20000&montoMax=50000
+
+6. GET | http://localhost:8080/pagos?estado=pagado
+
+7. GET | http://localhost:8080/pagos?sortBy=fecha_pago&sortOrder=DESC
+
+8. GET | http://localhost:8080/pagos?dniInquilino=20345678901&dniPropietario=20123456789

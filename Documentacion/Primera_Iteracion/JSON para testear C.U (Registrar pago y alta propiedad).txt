@@ -1,0 +1,74 @@
+JSON para registrarPago
+{
+  "contrato": {
+    "nroContrato": 1
+  },
+  "detalles": [
+    {
+      "monto": 50000,
+      "concepto": "Alquiler septiembre"
+    },
+    {
+      "monto": 60000,
+      "concepto": "Expensas septiembre"
+    }
+  ]
+}
+
+Json para Familiar
+{
+  "tipo": "Familiar",
+  "direccion": "Calle Falsa 456",
+  "m2Cubiertos": 120,
+  "m2Descubiertos": 80,
+  "condicionesGarantes": "Garantía propietaria",
+  "expensas": 3000,
+  "gastos": 2000,
+  "ciudad": "San Antonio Oeste",
+  "enAlquiler": true,
+  "valor_alquiler": 50000,
+  "enVenta": false,
+  "valor_venta": 0,
+  "descripcion": "Casa familiar con patio",
+  "titulo": "Casa Familiar en Alquiler",
+  "latitud": -40,
+  "longitud": -65,
+  "propietario": {
+    "dni": 20123456789
+  },
+  "cantAmbientes": 4,
+  "cantBaños": 2,
+  "cantCocheras": 1,
+  "piscina": true,
+  "permiteMascota": true,
+  "permiteNiños": true
+}
+
+Json para comercial
+{
+  "tipo": "Comercial",
+  "direccion": "Calle Falsa 456",
+  "m2Cubiertos": 120,
+  "m2Descubiertos": 80,
+  "condicionesGarantes": "Garantía propietaria",
+  "expensas": 3000,
+  "gastos": 2000,
+  "ciudad": "San Antonio Oeste",
+  "enAlquiler": true,
+  "valor_alquiler": 50000,
+  "enVenta": false,
+  "valor_venta": 0,
+  "descripcion": "Casa familiar con patio",
+  "titulo": "Casa Familiar en Alquiler",
+  "latitud": -40,
+  "longitud": -65,
+  "propietario": {
+    "dni": 20123456789
+  },
+  "permisosMunicipales": true,
+  "baño": true,
+  "cocina": true,
+  "piscina": true,
+  "vidriera": true,
+  "deposito": true
+}

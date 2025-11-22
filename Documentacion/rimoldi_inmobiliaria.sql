@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Sep 29, 2025 at 02:22 PM
+-- Generation Time: Nov 06, 2025 at 07:45 PM
 -- Server version: 8.4.3
 -- PHP Version: 8.3.16
 
@@ -44,7 +44,25 @@ INSERT INTO `comercial` (`idPropiedad`, `permisos_municipales`, `cocina`, `vidri
 (1, b'1', b'1', b'1', b'1', b'0'),
 (2, b'0', b'1', b'0', b'0', b'0'),
 (3, b'1', b'0', b'1', b'1', b'1'),
-(4, b'1', b'0', b'1', b'1', b'1');
+(4, b'1', b'0', b'1', b'1', b'1'),
+(12, b'1', b'1', b'1', b'1', b'1'),
+(13, b'1', b'1', b'1', b'1', b'1'),
+(19, b'1', b'1', b'1', b'1', b'1'),
+(20, b'1', b'1', b'1', b'1', b'1'),
+(21, b'1', b'1', b'1', b'1', b'1'),
+(22, b'1', b'1', b'1', b'1', b'1'),
+(23, b'1', b'1', b'1', b'1', b'1'),
+(24, b'1', b'1', b'1', b'1', b'1'),
+(25, b'1', b'1', b'1', b'1', b'1'),
+(26, b'1', b'1', b'1', b'1', b'1'),
+(27, b'1', b'1', b'1', b'1', b'1'),
+(28, b'1', b'1', b'1', b'1', b'1'),
+(31, b'1', b'1', b'1', b'1', b'1'),
+(32, b'1', b'1', b'1', b'1', b'1'),
+(33, b'1', b'1', b'1', b'1', b'1'),
+(34, b'1', b'1', b'1', b'1', b'1'),
+(35, b'1', b'1', b'1', b'1', b'1'),
+(40, b'1', b'1', b'1', b'1', b'1');
 
 -- --------------------------------------------------------
 
@@ -54,21 +72,78 @@ INSERT INTO `comercial` (`idPropiedad`, `permisos_municipales`, `cocina`, `vidri
 
 CREATE TABLE `contrato` (
   `nro_contrato` int NOT NULL,
-  `fecha_inicio` date NOT NULL,
-  `fecha_fin` date NOT NULL,
-  `fecha_cancelacion` date DEFAULT NULL,
+  `fechaInicio` date NOT NULL,
+  `fechaFin` date NOT NULL,
+  `fechaCancelacion` date DEFAULT NULL,
   `idPropiedad` int NOT NULL,
   `dniPropietario` bigint NOT NULL,
   `dniInquilino` bigint NOT NULL,
-  `dniMartillero` bigint NOT NULL
+  `dniMartillero` bigint NOT NULL,
+  `dniGarante` bigint DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `contrato`
 --
 
-INSERT INTO `contrato` (`nro_contrato`, `fecha_inicio`, `fecha_fin`, `fecha_cancelacion`, `idPropiedad`, `dniPropietario`, `dniInquilino`, `dniMartillero`) VALUES
-(1, '2025-03-01', '2026-03-01', NULL, 1, 20123456789, 20345678901, 20123456789);
+INSERT INTO `contrato` (`nro_contrato`, `fechaInicio`, `fechaFin`, `fechaCancelacion`, `idPropiedad`, `dniPropietario`, `dniInquilino`, `dniMartillero`, `dniGarante`) VALUES
+(1, '2025-03-01', '2026-03-01', NULL, 1, 20123456789, 20345678901, 20123456789, NULL),
+(2, '2028-10-15', '2030-10-15', '2029-10-15', 2, 20234567890, 20345678901, 20123456789, 20234567890),
+(3, '2028-10-15', '2030-10-15', '2029-10-15', 3, 20123456789, 20345678901, 20123456789, 20234567890),
+(7, '2058-10-15', '2060-10-15', '2029-10-15', 3, 20123456789, 20345678901, 20123456789, 20234567890),
+(8, '2030-10-15', '2032-10-15', '2031-10-15', 3, 20123456789, 20345678901, 20123456789, 20234567890);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `detallepago`
+--
+
+CREATE TABLE `detallepago` (
+  `idDetalle` int NOT NULL,
+  `concepto` varchar(255) NOT NULL,
+  `monto` double NOT NULL,
+  `idPago` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `detallepago`
+--
+
+INSERT INTO `detallepago` (`idDetalle`, `concepto`, `monto`, `idPago`) VALUES
+(1, 'Alquiler septiembre', 50000, 7),
+(2, 'Expensas septiembre', 60000, 7),
+(3, 'Alquiler septiembre', 50000, 8),
+(4, 'Expensas septiembre', 60000, 8),
+(5, 'Alquiler septiembre', 50000, 12),
+(6, 'Alquiler septiembre', 50000, 13),
+(7, 'Alquiler septiembre', 50000, 14),
+(8, 'Alquiler septiembre', 50000, 15),
+(9, 'Alquiler septiembre', 50000, 16),
+(10, 'Alquiler septiembre', 50000, 17),
+(11, 'Expensas septiembre', 60000, 17),
+(12, 'Alquiler septiembre', 50000, 17),
+(13, 'Expensas septiembre', 60000, 17),
+(14, 'Alquiler septiembre', 50000, 18),
+(15, 'Expensas septiembre', 60000, 18),
+(16, 'Alquiler septiembre', 50000, 18),
+(17, 'Expensas septiembre', 60000, 18),
+(18, 'Alquiler septiembre', 50000, 19),
+(19, 'Expensas septiembre', 60000, 19),
+(20, 'Alquiler septiembre', 50000, 19),
+(21, 'Expensas septiembre', 60000, 19),
+(22, 'Alquiler septiembre', 50000, 20),
+(23, 'Expensas septiembre', 60000, 20),
+(24, 'Alquiler septiembre', 50000, 21),
+(25, 'Expensas septiembre', 60000, 21),
+(26, 'Alquiler septiembre', 50000, 22),
+(27, 'Expensas septiembre', 60000, 22),
+(28, 'Alquiler septiembre', 50000, 23),
+(29, 'Expensas septiembre', 60000, 23),
+(30, 'Alquiler septiembre', 50000, 24),
+(31, 'Expensas septiembre', 60000, 24),
+(32, 'Alquiler septiembre', 50000, 25),
+(33, 'Expensas septiembre', 60000, 25);
 
 -- --------------------------------------------------------
 
@@ -78,14 +153,14 @@ INSERT INTO `contrato` (`nro_contrato`, `fecha_inicio`, `fecha_fin`, `fecha_canc
 
 CREATE TABLE `estado` (
   `idEstado` int NOT NULL,
-  `estado` varchar(45) NOT NULL
+  `nombreEstado` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `estado`
 --
 
-INSERT INTO `estado` (`idEstado`, `estado`) VALUES
+INSERT INTO `estado` (`idEstado`, `nombreEstado`) VALUES
 (1, 'Activo'),
 (2, 'Cancelado');
 
@@ -97,15 +172,18 @@ INSERT INTO `estado` (`idEstado`, `estado`) VALUES
 
 CREATE TABLE `estadocontrato` (
   `nro_contrato` int NOT NULL,
-  `idEstado` int NOT NULL
+  `idEstado` int NOT NULL,
+  `fechaEstado` date DEFAULT NULL COMMENT 'Fecha de la ultima actualizacion del contrato, o historial.\r\n'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `estadocontrato`
 --
 
-INSERT INTO `estadocontrato` (`nro_contrato`, `idEstado`) VALUES
-(1, 1);
+INSERT INTO `estadocontrato` (`nro_contrato`, `idEstado`, `fechaEstado`) VALUES
+(1, 1, NULL),
+(7, 1, '2025-10-17'),
+(8, 1, '2025-11-06');
 
 -- --------------------------------------------------------
 
@@ -117,8 +195,8 @@ CREATE TABLE `familiar` (
   `idPropiedad` int NOT NULL,
   `cant_ambientes` int NOT NULL,
   `piscina` bit(1) NOT NULL,
-  `permite_mascotas` tinyint NOT NULL,
-  `permite_niños` tinyint NOT NULL,
+  `permiteMascota` tinyint NOT NULL,
+  `permiteNiños` tinyint NOT NULL,
   `cant_baños` int NOT NULL,
   `cant_cocheras` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -127,9 +205,22 @@ CREATE TABLE `familiar` (
 -- Dumping data for table `familiar`
 --
 
-INSERT INTO `familiar` (`idPropiedad`, `cant_ambientes`, `piscina`, `permite_mascotas`, `permite_niños`, `cant_baños`, `cant_cocheras`) VALUES
+INSERT INTO `familiar` (`idPropiedad`, `cant_ambientes`, `piscina`, `permiteMascota`, `permiteNiños`, `cant_baños`, `cant_cocheras`) VALUES
 (1, 3, b'1', 1, 1, 0, 0),
-(2, 2, b'0', 1, 1, 0, 0);
+(2, 2, b'0', 1, 1, 0, 0),
+(9, 4, b'1', 1, 0, 2, 1),
+(10, 4, b'1', 1, 0, 2, 1),
+(14, 4, b'1', 1, 0, 2, 1),
+(15, 4, b'1', 1, 0, 2, 1),
+(17, 4, b'1', 1, 0, 2, 1),
+(18, 4, b'1', 1, 0, 2, 1),
+(29, 4, b'1', 1, 0, 2, 1),
+(30, 4, b'1', 1, 0, 2, 1),
+(36, 4, b'1', 1, 0, 2, 1),
+(37, 4, b'1', 1, 1, 2, 1),
+(38, 4, b'1', 1, 1, 2, 1),
+(39, 4, b'1', 1, 1, 2, 1),
+(41, 4, b'1', 1, 1, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -162,15 +253,17 @@ CREATE TABLE `inquilino` (
   `mascotas` tinyint NOT NULL,
   `empresa_trabaja` varchar(45) NOT NULL,
   `cantidad_integrantes` varchar(45) NOT NULL,
-  `ingresos` double NOT NULL
+  `ingresos` double NOT NULL,
+  `tieneRecargo` tinyint(1) DEFAULT '0',
+  `valorDeDeuda` double DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `inquilino`
 --
 
-INSERT INTO `inquilino` (`dniInquilino`, `mascotas`, `empresa_trabaja`, `cantidad_integrantes`, `ingresos`) VALUES
-(20345678901, 1, 'Empresa A', '3', 120000);
+INSERT INTO `inquilino` (`dniInquilino`, `mascotas`, `empresa_trabaja`, `cantidad_integrantes`, `ingresos`, `tieneRecargo`, `valorDeDeuda`) VALUES
+(20345678901, 1, 'Empresa A', '3', 120000, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -210,7 +303,26 @@ CREATE TABLE `pago` (
 INSERT INTO `pago` (`idPago`, `fecha_pago`, `monto_total`, `nro_contrato`) VALUES
 (1, '2025-04-01', 30000, 1),
 (2, '2025-05-01', 30000, 1),
-(3, '2025-04-01', 25000, 1);
+(3, '2025-04-01', 25000, 1),
+(7, '2025-09-30', 110000, 1),
+(8, '2025-09-30', 110000, 1),
+(9, '2025-10-02', 110000, 1),
+(10, '2025-10-02', 110000, 1),
+(11, '2025-10-02', 110000, 1),
+(12, '2025-10-02', 110000, 1),
+(13, '2025-10-02', 110000, 1),
+(14, '2025-10-02', 110000, 1),
+(15, '2025-10-02', 110000, 1),
+(16, '2025-10-02', 110000, 1),
+(17, '2025-10-02', 110000, 1),
+(18, '2025-10-02', 110000, 1),
+(19, '2025-10-02', 110000, 1),
+(20, '2025-10-02', 110000, 1),
+(21, '2025-10-03', 110000, 1),
+(22, '2025-10-03', 110000, 1),
+(23, '2025-10-04', 110000, 1),
+(24, '2025-10-04', 110000, 1),
+(25, '2025-10-18', 110000, 1);
 
 -- --------------------------------------------------------
 
@@ -254,7 +366,6 @@ CREATE TABLE `propiedad` (
   `condiciones_garantes` varchar(255) DEFAULT NULL,
   `expensas` double DEFAULT NULL,
   `gastos` double NOT NULL,
-  `fecha_precio_minimo` datetime(6) DEFAULT NULL,
   `ciudad` varchar(255) DEFAULT NULL,
   `enVenta` tinyint(1) NOT NULL,
   `enAlquiler` tinyint(1) NOT NULL,
@@ -270,11 +381,48 @@ CREATE TABLE `propiedad` (
 -- Dumping data for table `propiedad`
 --
 
-INSERT INTO `propiedad` (`idPropiedad`, `dniPropietario`, `direccion`, `m2_cubiertos`, `m2_descubiertos`, `condiciones_garantes`, `expensas`, `gastos`, `fecha_precio_minimo`, `ciudad`, `enVenta`, `enAlquiler`, `valor_alquiler`, `valor_venta`, `descripcion`, `titulo`, `latitud`, `longitud`) VALUES
-(1, 20123456789, 'Calle Falsa 123', 80, 20, 'Con Garante', 5000, 1000, '2025-01-01 00:00:00.000000', 'Ciudad A', 1, 1, 30000, 250000, 'Hermosa propiedad familiar', 'Casa en Venta', -35, -58),
-(2, 20234567890, 'Av Siempre Viva 742', 60, 15, 'Sin Garante', 3000, 800, '2025-02-01 00:00:00.000000', 'Ciudad B', 0, 1, 25000, 180000, 'Departamento céntrico', 'Depto en Alquiler', -35, -58),
-(3, 20123456789, 'Av. Siempre Viva 123', 100, 50, 'Garantía propietaria', 5000, 4000, '2025-09-29 00:00:00.000000', 'San Antonio Oeste', 0, 0, 0, 100000, 'Local con excelente ubicación', 'Local Comercial en Venta', -40, -65),
-(4, 20123456789, 'Av. Siempre Viva 123', 100, 50, 'Garantía propietaria', 5000, 4000, '2025-09-29 00:00:00.000000', 'San Antonio Oeste', 0, 0, 0, 100000, 'Local con excelente ubicación', 'Local Comercial en Venta', -40, -65);
+INSERT INTO `propiedad` (`idPropiedad`, `dniPropietario`, `direccion`, `m2_cubiertos`, `m2_descubiertos`, `condiciones_garantes`, `expensas`, `gastos`, `ciudad`, `enVenta`, `enAlquiler`, `valor_alquiler`, `valor_venta`, `descripcion`, `titulo`, `latitud`, `longitud`) VALUES
+(1, 20123456789, 'Calle Falsa 123', 80, 20, 'Con Garante', 5000, 1000, 'Ciudad A', 1, 1, 30000, 250000, 'Hermosa propiedad familiar', 'Casa en Venta', -35, -58),
+(2, 20234567890, 'Av Siempre Viva 742', 60, 15, 'Sin Garante', 3000, 800, 'Ciudad B', 0, 1, 25000, 180000, 'Departamento céntrico', 'Depto en Alquiler', -35, -58),
+(3, 20123456789, 'Av. Siempre Viva 123', 100, 50, 'Garantía propietaria', 5000, 4000, 'San Antonio Oeste', 0, 0, 0, 100000, 'Local con excelente ubicación', 'Local Comercial en Venta', -40, -65),
+(4, 20123456789, 'Av. Siempre Viva 123', 100, 50, 'Garantía propietaria', 5000, 4000, 'San Antonio Oeste', 0, 0, 0, 100000, 'Local con excelente ubicación', 'Local Comercial en Venta', -40, -65),
+(5, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(6, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(7, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(8, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(9, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(10, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(11, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(12, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(13, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(14, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(15, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(16, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(17, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(18, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(19, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(20, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(21, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(22, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(23, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(24, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(25, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(26, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(27, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(28, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(29, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(30, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(31, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(32, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(33, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(34, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(35, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(36, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(37, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(38, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(39, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(40, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65),
+(41, 20123456789, 'Calle Falsa 456', 120, 80, 'Garantía propietaria', 3000, 2000, 'San Antonio Oeste', 0, 1, 50000, 0, 'Casa familiar con patio', 'Casa Familiar en Alquiler', -40, -65);
 
 -- --------------------------------------------------------
 
@@ -313,7 +461,15 @@ ALTER TABLE `contrato`
   ADD KEY `fk_Contrato_Propiedad` (`idPropiedad`),
   ADD KEY `fk_Contrato_Propietario` (`dniPropietario`),
   ADD KEY `fk_Contrato_Inquilino` (`dniInquilino`),
-  ADD KEY `fk_Contrato_Martillero` (`dniMartillero`);
+  ADD KEY `fk_Contrato_Martillero` (`dniMartillero`),
+  ADD KEY `fk_contrato_garante` (`dniGarante`);
+
+--
+-- Indexes for table `detallepago`
+--
+ALTER TABLE `detallepago`
+  ADD PRIMARY KEY (`idDetalle`),
+  ADD KEY `fk_detalle_pago` (`idPago`);
 
 --
 -- Indexes for table `estado`
@@ -387,19 +543,25 @@ ALTER TABLE `propietario`
 -- AUTO_INCREMENT for table `contrato`
 --
 ALTER TABLE `contrato`
-  MODIFY `nro_contrato` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `nro_contrato` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `detallepago`
+--
+ALTER TABLE `detallepago`
+  MODIFY `idDetalle` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `pago`
 --
 ALTER TABLE `pago`
-  MODIFY `idPago` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idPago` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `propiedad`
 --
 ALTER TABLE `propiedad`
-  MODIFY `idPropiedad` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idPropiedad` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- Constraints for dumped tables
@@ -415,10 +577,17 @@ ALTER TABLE `comercial`
 -- Constraints for table `contrato`
 --
 ALTER TABLE `contrato`
+  ADD CONSTRAINT `fk_contrato_garante` FOREIGN KEY (`dniGarante`) REFERENCES `garante` (`dniGarante`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_Contrato_Inquilino` FOREIGN KEY (`dniInquilino`) REFERENCES `inquilino` (`dniInquilino`),
   ADD CONSTRAINT `fk_Contrato_Martillero` FOREIGN KEY (`dniMartillero`) REFERENCES `martillero` (`dniMartillero`),
   ADD CONSTRAINT `fk_Contrato_Propiedad` FOREIGN KEY (`idPropiedad`) REFERENCES `propiedad` (`idPropiedad`),
   ADD CONSTRAINT `fk_Contrato_Propietario` FOREIGN KEY (`dniPropietario`) REFERENCES `propietario` (`dniPropietario`);
+
+--
+-- Constraints for table `detallepago`
+--
+ALTER TABLE `detallepago`
+  ADD CONSTRAINT `fk_detalle_pago` FOREIGN KEY (`idPago`) REFERENCES `pago` (`idPago`);
 
 --
 -- Constraints for table `estadocontrato`
