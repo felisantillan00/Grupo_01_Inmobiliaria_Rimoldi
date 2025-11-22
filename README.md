@@ -102,13 +102,12 @@ Permite filtrar por rango de fechas, inquilino, propietario o contrato.
 
 ### 🔹 Vista de Módulos  
 Representa los paquetes del sistema (`controller`, `service`, `dao`, `model`) y sus relaciones.
-
-> *(Agregar imagen: `VistaModuloDelSistema.jpg`)*
+![DiagramaPaquete](https://github.com/user-attachments/assets/b5ba8146-2414-4183-951c-79e5373a3d75)
 
 ### 🔹 Vista de Componente–Conector  
 Muestra cómo los componentes se comunican en tiempo de ejecución.
 
-> *(Agregar imagen: `VistaDeComponenteConectorDelSistema.jpg`)*
+![DiagramaComponente](https://github.com/user-attachments/assets/e8b11cdc-cc96-4111-92a4-9feec4b85ca9)
 
 ---
 
