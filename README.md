@@ -10,72 +10,105 @@ El sistema **Inmobiliaria Rimoldi** permite gestionar las operaciones principale
 - Generación de contratos  
 - Registro de pagos  
 - Consulta de historial de pagos  
-- Manejo de propietarios, inquilinos, garantes y martilleros
+- Manejo de propietarios, inquilinos, garantes y martilleros  
 
-El foco del proyecto es demostrar el análisis, diseño e implementación aplicando:
-- Patrón **DAO**
-- Patrón **MVC**
-- Patrón **Reflexivo**
-- Arquitectura documentada con vistas **Módulo** y **Componente–Conector**
+El proyecto se centra en aplicar conceptos de análisis, diseño y arquitectura de software, incorporando:
+
+- Patrón **DAO**  
+- Patrón arquitectónico **MVC**  
+- Patrón **Reflexivo**  
+- Patrones de diseño utilizados (Singleton, Inyección de Dependencias)  
+- Vistas arquitectónicas **Módulo** y **Componente–Conector** según ISO/IEC/IEEE 42010  
 
 ---
 
 ## 🧱 Arquitectura del Sistema
 
-El sistema sigue una arquitectura por capas basada en **MVC**:
+El sistema está organizado mediante el patrón **MVC**, el cual se considera un **patrón arquitectónico**, no un patrón de diseño.
 
 ### ✔ Modelo  
-Contiene las entidades del dominio:  
-`Propiedad`, `Contrato`, `Usuario`, `Pago`, `Martillero`, `Inquilino`, `Propietario`, etc.
+Contiene las entidades principales del dominio:  
+`Propiedad`, `Contrato`, `Usuario`, `Pago`, `Inquilino`, `Propietario`, `Martillero`, etc.
 
 ### ✔ Persistencia (DAO)  
-Manejo de la base de datos mediante **SQL2O**.  
-Incluye consultas, inserciones, actualizaciones y borrados.
+Responsable del acceso a datos utilizando **SQL2O**.  
+Incluye consultas, validaciones, inserciones, actualizaciones y borrados.
 
 ### ✔ Servicios  
-Encargados de la lógica de negocio:  
-validaciones, cálculos de recargos, verificación de pagos fuera de término.
+Procesan la lógica de negocio:  
+validaciones, cálculos de recargos, verificación de mora.
 
 ### ✔ Controladores  
-Exponen endpoints REST para manejar la interacción con clientes externos.
+Exponen endpoints REST que permiten la comunicación con el cliente web.
 
 ### ✔ Base de Datos  
-MySQL con las tablas correspondientes a las entidades del dominio.
+Implementada en **MySQL**, con un esquema relacional acorde al dominio.
+
+---
+
+## 🧩 Patrones de Diseño Aplicados
+
+### 🔹 Patrón DAO  
+Permite desacoplar la lógica de acceso a datos del resto del sistema.
+
+### 🔹 Patrón Singleton (para SQL2O)  
+SQL2O se gestiona mediante una **única instancia compartida**, evitando duplicación de conexiones y manteniendo consistencia.
+
+### 🔹 Inyección de Dependencias  
+Utilizada por Spring Boot para desacoplar Controladores, Servicios y DAOs, facilitando el mantenimiento y testeo.
+
+---
+
+## 🔮 Posibles Patrones para Futuras Versiones
+
+### 🔹 Factory Method  
+Útil si el sistema incorpora distintos tipos de pagos o contratos.  
+Ejemplos futuros:
+
+- `PagoEfectivo`, `PagoTransferencia`, `PagoTarjeta`  
+- `ContratoResidencial`, `ContratoComercial`  
+
+### 🔹 Façade  
+Serviría para unificar procesos complejos en una sola operación de alto nivel.  
+Por ejemplo:
+
+> Registrar contrato + generar pago inicial + enviar notificación
+
+Esto reduce el acoplamiento entre la capa de presentación y la lógica interna.
 
 ---
 
 ## 🔎 Funcionalidades Principales
 
 ### 1️⃣ Alta de Propiedad  
-Permite registrar una nueva propiedad.  
-Incluye validaciones y campos específicos según tipo de propiedad (familiar o comercial).
+Registra una nueva propiedad con todos sus atributos.  
+Incluye validaciones e información específica según el tipo (familiar o comercial).
 
 ### 2️⃣ Registrar Pago  
-- Verificación de deuda previa  
-- Aplicación de recargos por mora  
-- Actualización de estados (`tieneRecargo`, `valorDeDeuda`)  
-- Registro del pago y generación de detalle  
+- Verifica deudas previas  
+- Calcula recargos por mora  
+- Actualiza `tieneRecargo` y `valorDeDeuda`  
+- Registra el pago y muestra detalle  
 
 ### 3️⃣ Generación de Contrato  
-Asocia propietario, inquilino, garante y propiedad con fechas correspondientes.
+Asocia propiedad, propietario, inquilino, garante y martillero con fechas y datos correspondientes.
 
 ### 4️⃣ Consulta de Historial de Pagos  
-Permite filtrar por periodo, inquilino, propietario o contrato.
+Permite filtrar por rango de fechas, inquilino, propietario o contrato.
 
 ---
 
 ## 🗂 Vistas Arquitectónicas (ISO/IEC/IEEE 42010)
 
 ### 🔹 Vista de Módulos  
-Representación de los paquetes del sistema (`controller`, `service`, `dao`, `model`)  
-y sus relaciones estáticas.
+Representa los paquetes del sistema (`controller`, `service`, `dao`, `model`) y sus relaciones.
 
-> *(Insertar imagen: VistaModuloDelSistema.jpg)*
+> *(Agregar imagen: `VistaModuloDelSistema.jpg`)*
 
 ### 🔹 Vista de Componente–Conector  
 Muestra cómo los componentes se comunican en tiempo de ejecución.
 
-> *(Insertar imagen: VistaDeComponenteConectorDelSistema.jpg)*
+> *(Agregar imagen: `VistaDeComponenteConectorDelSistema.jpg`)*
 
 ---
 
@@ -85,15 +118,15 @@ Muestra cómo los componentes se comunican en tiempo de ejecución.
 |-----------|-----|
 | **Java 17** | Lenguaje principal |
 | **Spring Boot** | Backend REST |
-| **SQL2O** | Capa de persistencia |
+| **SQL2O** | Persistencia |
 | **MySQL** | Base de datos |
-| **Maven** | Gestión de dependencias |
+| **Maven** | Dependencias |
 | **UML** | Modelado del sistema |
 
 ---
 
 ## 🚀 Cómo Ejecutar el Proyecto
 
-### 1. Clonar el repositorio
+### 1️⃣ Clonar el repositorio
 ```bash
 git clone https://github.com/felisantillan00/Grupo_01_Inmobiliaria_Rimoldi.git
